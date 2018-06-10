@@ -1,0 +1,99 @@
+Target Part: A3PE3000_FBGA484_STD
+Report for cell pfs_top.verilog
+  Core Cell usage:
+              cell count     area count*area
+              AND2   858      1.0      858.0
+             AND2A    97      1.0       97.0
+              AND3   109      1.0      109.0
+               AO1  1044      1.0     1044.0
+              AO13   325      1.0      325.0
+              AO18    72      1.0       72.0
+              AO1A    77      1.0       77.0
+              AO1C   120      1.0      120.0
+              AOI1    32      1.0       32.0
+             AOI1A   241      1.0      241.0
+             AOI1B    40      1.0       40.0
+               AX1     5      1.0        5.0
+              AX1B    13      1.0       13.0
+              AX1C     8      1.0        8.0
+              AX1D     5      1.0        5.0
+             AXOI3     1      1.0        1.0
+             AXOI5     2      1.0        2.0
+              BUFD     1      1.0        1.0
+            CLKINT     4      0.0        0.0
+           DDR_OUT     4      0.0        0.0
+               GND    51      0.0        0.0
+               INV    13      1.0       13.0
+              MIN3     3      1.0        3.0
+               MX2  2100      1.0     2100.0
+              MX2A    26      1.0       26.0
+              MX2B    50      1.0       50.0
+              MX2C     3      1.0        3.0
+              NOR2   462      1.0      462.0
+             NOR2A   719      1.0      719.0
+             NOR2B  1874      1.0     1874.0
+              NOR3    45      1.0       45.0
+             NOR3A   300      1.0      300.0
+             NOR3B   461      1.0      461.0
+             NOR3C   366      1.0      366.0
+               OA1    85      1.0       85.0
+              OA1A   172      1.0      172.0
+              OA1B    50      1.0       50.0
+              OA1C    36      1.0       36.0
+              OAI1     1      1.0        1.0
+               OR2   511      1.0      511.0
+              OR2A   443      1.0      443.0
+              OR2B    25      1.0       25.0
+               OR3   834      1.0      834.0
+              OR3A     5      1.0        5.0
+              OR3B     6      1.0        6.0
+              OR3C    13      1.0       13.0
+               VCC    51      0.0        0.0
+               XA1    21      1.0       21.0
+              XA1A    24      1.0       24.0
+              XA1B    60      1.0       60.0
+              XA1C     6      1.0        6.0
+             XAI1A    32      1.0       32.0
+             XNOR2   969      1.0      969.0
+             XNOR3    27      1.0       27.0
+               XO1     1      1.0        1.0
+              XO1A     1      1.0        1.0
+              XOR2  1725      1.0     1725.0
+              XOR3   235      1.0      235.0
+
+
+              DFI0     2      1.0        2.0
+              DFI1     4      1.0        4.0
+          DFI1E0C0     2      1.0        2.0
+              DFN0   152      1.0      152.0
+            DFN0C0     4      1.0        4.0
+            DFN0P0     6      1.0        6.0
+              DFN1  1329      1.0     1329.0
+            DFN1C0   225      1.0      225.0
+            DFN1E0   257      1.0      257.0
+          DFN1E0C0   109      1.0      109.0
+          DFN1E0P0     3      1.0        3.0
+            DFN1E1    11      1.0       11.0
+          DFN1E1C0  1527      1.0     1527.0
+            DFN1P0    24      1.0       24.0
+          FIFO4K18    14      0.0        0.0
+         RAM512X18    16      0.0        0.0
+                   -----          ----------
+             TOTAL 18549             18409.0
+
+
+  IO Cell usage:
+              cell count
+            CLKBUF     2
+             INBUF     7
+            OUTBUF   101
+                   -----
+             TOTAL   110
+
+
+Core Cells         : 18409 of 75264 (24%)
+IO Cells           : 110
+
+  RAM/ROM Usage Summary
+Block Rams : 30 of 112 (26%)
+

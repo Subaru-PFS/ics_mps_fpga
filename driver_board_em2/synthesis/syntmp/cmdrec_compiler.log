@@ -1,0 +1,34 @@
+C:\Synopsys\fpga_N-2017.09\bin64\c_hdl.exe  -osyn  D:\pfs\pfs_develop\driver_board_em2\synthesis\synwork\pfs_top_comp.srs  -top  pfs_top  -hdllog  D:\pfs\pfs_develop\driver_board_em2\synthesis\synlog\pfs_top_compiler.srr  -encrypt  -mp  4  -verification_mode 0  -verilog  -prodtype  synplify_pro  -nram -fixsmult -divnmod   -I D:\pfs\pfs_develop\driver_board_em2\synthesis\  -I C:\Synopsys\fpga_N-2017.09\lib   -sysv  -devicelib  C:\Synopsys\fpga_N-2017.09\lib\proasic\proasic3e.v  -encrypt  -pro  -dmgen  D:\pfs\pfs_develop\driver_board_em2\synthesis\dm  -ui -fid2 -ram -sharing off -ll 2000 -autosm  -lib work D:\pfs\pfs_develop\driver_board_em2\src\pfs_pkgs.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\mm_states.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\ad7265.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\adc_current_if.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\adc_temps_if.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\calibrator.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\divider.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\cal_norm.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\clk_counter.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\cmd_to_bus.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\comm.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\deserializer.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\fifo.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\mm_bus_read.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\mm_bus_write.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\mm_col_control.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\mm_throttle.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\motor_driver.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\motor_mux.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\pfs.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\pfs_bus.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\pfs_bus_master.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\roundrobin_mux.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\router.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\rst_deb.v -lib work D:\pfs\pfs_develop\driver_board_em2\src\serializer.v  -jobname  "compiler" 
+relcom:C:\Synopsys\fpga_N-2017.09\bin64\c_hdl.exe -osyn ..\synwork\pfs_top_comp.srs -top pfs_top -hdllog ..\synlog\pfs_top_compiler.srr -encrypt -mp 4 -verification_mode 0 -verilog -prodtype synplify_pro -nram -fixsmult -divnmod -I ..\ -I C:\Synopsys\fpga_N-2017.09\lib -sysv -devicelib C:\Synopsys\fpga_N-2017.09\lib\proasic\proasic3e.v -encrypt -pro -dmgen ..\dm -ui -fid2 -ram -sharing off -ll 2000 -autosm -lib work ..\..\src\pfs_pkgs.v -lib work ..\..\src\mm_states.v -lib work ..\..\src\ad7265.v -lib work ..\..\src\adc_current_if.v -lib work ..\..\src\adc_temps_if.v -lib work ..\..\src\calibrator.v -lib work ..\..\src\divider.v -lib work ..\..\src\cal_norm.v -lib work ..\..\src\clk_counter.v -lib work ..\..\src\cmd_to_bus.v -lib work ..\..\src\comm.v -lib work ..\..\src\deserializer.v -lib work ..\..\src\fifo.v -lib work ..\..\src\mm_bus_read.v -lib work ..\..\src\mm_bus_write.v -lib work ..\..\src\mm_col_control.v -lib work ..\..\src\mm_throttle.v -lib work ..\..\src\motor_driver.v -lib work ..\..\src\motor_mux.v -lib work ..\..\src\pfs.v -lib work ..\..\src\pfs_bus.v -lib work ..\..\src\pfs_bus_master.v -lib work ..\..\src\pfs_top.v -lib work ..\..\src\roundrobin_mux.v -lib work ..\..\src\router.v -lib work ..\..\src\rst_deb.v -lib work ..\..\src\serializer.v -jobname "compiler"
+rc:0 success:1 runtime:8
+file:..\synwork\pfs_top_comp.srs|io:o|time:1506486302|size:132953|exec:0|csum:
+file:..\synlog\pfs_top_compiler.srr|io:o|time:1506486302|size:32261|exec:0|csum:
+file:C:\Synopsys\fpga_N-2017.09\lib\proasic\proasic3e.v|io:i|time:1503591916|size:55760|exec:0|csum:64AE7C3A692FB1B8DBD4D43CE4BE7E9F
+file:..\..\src\pfs_pkgs.v|io:i|time:1506101976|size:5633|exec:0|csum:CA1BFC1D999A6C57F8E9511C047022A4
+file:..\..\src\mm_states.v|io:i|time:1506101976|size:1419|exec:0|csum:E93C5AF8C7D6B5559C5C3847EDE3DFAD
+file:..\..\src\ad7265.v|io:i|time:1506485876|size:3284|exec:0|csum:1580899B07C0D84D9C7E65080A35BF3F
+file:..\..\src\adc_current_if.v|io:i|time:1506485876|size:6264|exec:0|csum:45680754AD70A0F47563783BCE4927E6
+file:..\..\src\adc_temps_if.v|io:i|time:1506485876|size:5857|exec:0|csum:F92A28FB8C3F51A40A8127FB5C45A3B2
+file:..\..\src\calibrator.v|io:i|time:1506101976|size:18924|exec:0|csum:50A98CBB3151F37952ACAA9FEBB878F9
+file:..\..\src\divider.v|io:i|time:1506101976|size:1998|exec:0|csum:EE43635D51266EEBC9339103A2F79C8C
+file:..\..\src\cal_norm.v|io:i|time:1506101976|size:818|exec:0|csum:5323F9DB95B36B5DB174FDC971F8B6CE
+file:..\..\src\clk_counter.v|io:i|time:1506101976|size:546|exec:0|csum:59BCC4AB9A31C11D7B9D70EDD764F4D6
+file:..\..\src\cmd_to_bus.v|io:i|time:1506101976|size:3632|exec:0|csum:D663917975E353DE99C2A05D1D2044C2
+file:..\..\src\comm.v|io:i|time:1506101976|size:3440|exec:0|csum:AE7C033C7FBAB71431E4CEA90439666D
+file:..\..\src\deserializer.v|io:i|time:1506101976|size:3419|exec:0|csum:14E227DAF3DED5AB68BF6000A4FEB897
+file:..\..\src\fifo.v|io:i|time:1506101976|size:5426|exec:0|csum:5D7628F4C0F6FC96F9BA3B5FB0E1ABDB
+file:..\..\src\mm_bus_read.v|io:i|time:1506101976|size:6361|exec:0|csum:A739D82A1CB999D2D02CB688C0456187
+file:..\..\src\mm_bus_write.v|io:i|time:1506101976|size:5480|exec:0|csum:C9B40CFE8B4CEC33AC50A521127C9246
+file:..\..\src\mm_col_control.v|io:i|time:1506101976|size:2589|exec:0|csum:B077EC0AD022A3FCAD27373E1309ACEF
+file:..\..\src\mm_throttle.v|io:i|time:1506101976|size:2219|exec:0|csum:04E364E66052E814182AF4D6DD980E0C
+file:..\..\src\motor_driver.v|io:i|time:1506101976|size:6196|exec:0|csum:962F819AEC40E07426E9D057912D1CC8
+file:..\..\src\motor_mux.v|io:i|time:1506101976|size:8440|exec:0|csum:EB0263C2C8F88E401F813717716C1DBC
+file:..\..\src\pfs.v|io:i|time:1506485876|size:7851|exec:0|csum:B611411B9495D5D2B3A9E4D4F25C9643
+file:..\..\src\pfs_bus.v|io:i|time:1506101976|size:2006|exec:0|csum:2E28C3D77B85D840711EFCC9E52F9EFC
+file:..\..\src\pfs_bus_master.v|io:i|time:1506101976|size:5431|exec:0|csum:EA1DED90A6149F3335D2212486689CD3
+file:..\..\src\pfs_top.v|io:i|time:1506486099|size:11281|exec:0|csum:2CB30ABBEC09558540E874229348C9EE
+file:..\..\src\roundrobin_mux.v|io:i|time:1506101976|size:3195|exec:0|csum:43EF1FB5F6703483804DC4FDB1731393
+file:..\..\src\router.v|io:i|time:1506101976|size:2580|exec:0|csum:CA1E0D2BC12FCE8AC12238EB7BCAE183
+file:..\..\src\rst_deb.v|io:i|time:1506101976|size:822|exec:0|csum:3A4D91881C3E329C44C0A189160A0271
+file:..\..\src\serializer.v|io:i|time:1506101976|size:3114|exec:0|csum:716627F75328AF7A5D9B4D43C14AD529
+file:C:\Synopsys\fpga_N-2017.09\bin64\c_hdl.exe|io:i|time:1504075394|size:5573120|exec:1|csum:208A976A6A1622D6F58429403F9C2A5C

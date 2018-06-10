@@ -1,0 +1,395 @@
+
+fsm_encoding {165305310} onehot
+
+fsm_state_encoding {165305310} RESET {00001}
+
+fsm_state_encoding {165305310} IDLE {00010}
+
+fsm_state_encoding {165305310} START_BIT {00100}
+
+fsm_state_encoding {165305310} DATA {01000}
+
+fsm_state_encoding {165305310} STOP_BIT {10000}
+
+fsm_registers {165305310} {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {31550559} sequential
+
+fsm_state_encoding {31550559} RESET {00}
+
+fsm_state_encoding {31550559} IDLE {01}
+
+fsm_state_encoding {31550559} LATCH {10}
+
+fsm_state_encoding {31550559} SERIALIZE {11}
+
+fsm_registers {31550559} {state[1]}  {state[0]} 
+
+fsm_encoding {165305310} onehot
+
+fsm_state_encoding {165305310} RESET {00001}
+
+fsm_state_encoding {165305310} IDLE {00010}
+
+fsm_state_encoding {165305310} START_BIT {00100}
+
+fsm_state_encoding {165305310} DATA {01000}
+
+fsm_state_encoding {165305310} STOP_BIT {10000}
+
+fsm_registers {165305310} {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {14870878} sequential
+
+fsm_state_encoding {14870878} RESET {00}
+
+fsm_state_encoding {14870878} IDLE {01}
+
+fsm_state_encoding {14870878} READ {10}
+
+fsm_state_encoding {14870878} HANDLE {11}
+
+fsm_registers {14870878} {state[1]}  {state[0]} 
+
+fsm_encoding {28560567} sequential
+
+fsm_state_encoding {28560567} 00000000000000000000000000000000 {00}
+
+fsm_state_encoding {28560567} 00000000000000000000000000000001 {01}
+
+fsm_state_encoding {28560567} READ {10}
+
+fsm_registers {28560567} {state[1]}  {state[0]} 
+
+fsm_encoding {23990996} onehot
+
+fsm_state_encoding {23990996} RESET {000000000001}
+
+fsm_state_encoding {23990996} IDLE {000000000010}
+
+fsm_state_encoding {23990996} START_MUX {000000000100}
+
+fsm_state_encoding {23990996} GET_SETUP_REGS {000000001000}
+
+fsm_state_encoding {23990996} GET_MOTOR_REGS {000000010000}
+
+fsm_state_encoding {23990996} FINISH_SETUP {000000100000}
+
+fsm_state_encoding {23990996} START_MOTOR {000001000000}
+
+fsm_state_encoding {23990996} DRIVE {000010000000}
+
+fsm_state_encoding {23990996} UPDATE_COUNTS {000100000000}
+
+fsm_state_encoding {23990996} WAIT_FOR_THROTTLE {001000000000}
+
+fsm_state_encoding {23990996} CHECK_IF_FINISHED {010000000000}
+
+fsm_state_encoding {23990996} FINALIZE {100000000000}
+
+fsm_registers {23990996} {state[11]}  {state[10]}  {state[9]}  {state[8]}  {state[7]}  {state[6]}  {state[5]}  {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {2210001005} onehot
+
+fsm_state_encoding {2210001005} RESET {00001}
+
+fsm_state_encoding {2210001005} IDLE {00010}
+
+fsm_state_encoding {2210001005} LATCH {00100}
+
+fsm_state_encoding {2210001005} SYNC_1US {01000}
+
+fsm_state_encoding {2210001005} MTR_DRV {10000}
+
+fsm_registers {2210001005} {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {1029502954} onehot
+
+fsm_state_encoding {1029502954} RESET {000000000001}
+
+fsm_state_encoding {1029502954} IDLE {000000000010}
+
+fsm_state_encoding {1029502954} GET_SETUP_REGS {000000000100}
+
+fsm_state_encoding {1029502954} CHOOSE_MOTOR {000000001000}
+
+fsm_state_encoding {1029502954} GET_MOTOR_REGS {000000010000}
+
+fsm_state_encoding {1029502954} LOAD_PARAMS {000000100000}
+
+fsm_state_encoding {1029502954} START_MOTOR {000001000000}
+
+fsm_state_encoding {1029502954} RUN_MOTOR {000010000000}
+
+fsm_state_encoding {1029502954} INCR_PERIOD {000100000000}
+
+fsm_state_encoding {1029502954} CONTINUE {001000000000}
+
+fsm_state_encoding {1029502954} UPDATE_RESULTS {010000000000}
+
+fsm_state_encoding {1029502954} FINALIZE {100000000000}
+
+fsm_registers {1029502954} {state[11]}  {state[10]}  {state[9]}  {state[8]}  {state[7]}  {state[6]}  {state[5]}  {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {812501252} onehot
+
+fsm_state_encoding {812501252} RESET {00001}
+
+fsm_state_encoding {812501252} IDLE {00010}
+
+fsm_state_encoding {812501252} SETUP {00100}
+
+fsm_state_encoding {812501252} READING {01000}
+
+fsm_state_encoding {812501252} LOGGING {10000}
+
+fsm_registers {812501252} {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {7750753} sequential
+
+fsm_state_encoding {7750753} IDLE {00}
+
+fsm_state_encoding {7750753} SETUP {01}
+
+fsm_state_encoding {7750753} GOING {10}
+
+fsm_state_encoding {7750753} SAMPLE {11}
+
+fsm_registers {7750753} {state[1]}  {state[0]} 
+
+fsm_encoding {912101211} onehot
+
+fsm_state_encoding {912101211} RESET {00001}
+
+fsm_state_encoding {912101211} IDLE {00010}
+
+fsm_state_encoding {912101211} SETUP {00100}
+
+fsm_state_encoding {912101211} READING {01000}
+
+fsm_state_encoding {912101211} LOGGING {10000}
+
+fsm_registers {912101211} {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {7750753} sequential
+
+fsm_state_encoding {7750753} IDLE {00}
+
+fsm_state_encoding {7750753} SETUP {01}
+
+fsm_state_encoding {7750753} GOING {10}
+
+fsm_state_encoding {7750753} SAMPLE {11}
+
+fsm_registers {7750753} {state[1]}  {state[0]} 
+0}
+
+fsm_state_encoding {2210001005} MTR_DRV {10000}
+
+fsm_registers {2210001005} {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {2210001005} onehot
+
+fsm_state_encoding {2210001005} RESET {00001}
+
+fsm_state_encoding {2210001005} IDLE {00010}
+
+fsm_state_encoding {2210001005} LATCH {00100}
+
+fsm_state_encoding {2210001005} SYNC_1US {01000}
+
+fsm_state_encoding {2210001005} MTR_DRV {10000}
+
+fsm_registers {2210001005} {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {2210001005} onehot
+
+fsm_state_encoding {2210001005} RESET {00001}
+
+fsm_state_encoding {2210001005} IDLE {00010}
+
+fsm_state_encoding {2210001005} LATCH {00100}
+
+fsm_state_encoding {2210001005} SYNC_1US {01000}
+
+fsm_state_encoding {2210001005} MTR_DRV {10000}
+
+fsm_registers {2210001005} {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {2210001005} onehot
+
+fsm_state_encoding {2210001005} RESET {00001}
+
+fsm_state_encoding {2210001005} IDLE {00010}
+
+fsm_state_encoding {2210001005} LATCH {00100}
+
+fsm_state_encoding {2210001005} SYNC_1US {01000}
+
+fsm_state_encoding {2210001005} MTR_DRV {10000}
+
+fsm_registers {2210001005} {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {2210001005} onehot
+
+fsm_state_encoding {2210001005} RESET {00001}
+
+fsm_state_encoding {2210001005} IDLE {00010}
+
+fsm_state_encoding {2210001005} LATCH {00100}
+
+fsm_state_encoding {2210001005} SYNC_1US {01000}
+
+fsm_state_encoding {2210001005} MTR_DRV {10000}
+
+fsm_registers {2210001005} {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {2210001005} onehot
+
+fsm_state_encoding {2210001005} RESET {00001}
+
+fsm_state_encoding {2210001005} IDLE {00010}
+
+fsm_state_encoding {2210001005} LATCH {00100}
+
+fsm_state_encoding {2210001005} SYNC_1US {01000}
+
+fsm_state_encoding {2210001005} MTR_DRV {10000}
+
+fsm_registers {2210001005} {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {2210001005} onehot
+
+fsm_state_encoding {2210001005} RESET {00001}
+
+fsm_state_encoding {2210001005} IDLE {00010}
+
+fsm_state_encoding {2210001005} LATCH {00100}
+
+fsm_state_encoding {2210001005} SYNC_1US {01000}
+
+fsm_state_encoding {2210001005} MTR_DRV {10000}
+
+fsm_registers {2210001005} {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {2210001005} onehot
+
+fsm_state_encoding {2210001005} RESET {00001}
+
+fsm_state_encoding {2210001005} IDLE {00010}
+
+fsm_state_encoding {2210001005} LATCH {00100}
+
+fsm_state_encoding {2210001005} SYNC_1US {01000}
+
+fsm_state_encoding {2210001005} MTR_DRV {10000}
+
+fsm_registers {2210001005} {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {23990996} onehot
+
+fsm_state_encoding {23990996} RESET {000000000001}
+
+fsm_state_encoding {23990996} IDLE {000000000010}
+
+fsm_state_encoding {23990996} START_MUX {000000000100}
+
+fsm_state_encoding {23990996} GET_SETUP_REGS {000000001000}
+
+fsm_state_encoding {23990996} GET_MOTOR_REGS {000000010000}
+
+fsm_state_encoding {23990996} FINISH_SETUP {000000100000}
+
+fsm_state_encoding {23990996} START_MOTOR {000001000000}
+
+fsm_state_encoding {23990996} DRIVE {000010000000}
+
+fsm_state_encoding {23990996} UPDATE_COUNTS {000100000000}
+
+fsm_state_encoding {23990996} WAIT_FOR_THROTTLE {001000000000}
+
+fsm_state_encoding {23990996} CHECK_IF_FINISHED {010000000000}
+
+fsm_state_encoding {23990996} FINALIZE {100000000000}
+
+fsm_registers {23990996} {state[11]}  {state[10]}  {state[9]}  {state[8]}  {state[7]}  {state[6]}  {state[5]}  {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {1029502954} onehot
+
+fsm_state_encoding {1029502954} RESET {000000000001}
+
+fsm_state_encoding {1029502954} IDLE {000000000010}
+
+fsm_state_encoding {1029502954} GET_SETUP_REGS {000000000100}
+
+fsm_state_encoding {1029502954} CHOOSE_MOTOR {000000001000}
+
+fsm_state_encoding {1029502954} GET_MOTOR_REGS {000000010000}
+
+fsm_state_encoding {1029502954} LOAD_PARAMS {000000100000}
+
+fsm_state_encoding {1029502954} START_MOTOR {000001000000}
+
+fsm_state_encoding {1029502954} RUN_MOTOR {000010000000}
+
+fsm_state_encoding {1029502954} INCR_PERIOD {000100000000}
+
+fsm_state_encoding {1029502954} CONTINUE {001000000000}
+
+fsm_state_encoding {1029502954} UPDATE_RESULTS {010000000000}
+
+fsm_state_encoding {1029502954} FINALIZE {100000000000}
+
+fsm_registers {1029502954} {state[11]}  {state[10]}  {state[9]}  {state[8]}  {state[7]}  {state[6]}  {state[5]}  {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {7750753} sequential
+
+fsm_state_encoding {7750753} IDLE {00}
+
+fsm_state_encoding {7750753} SETUP {01}
+
+fsm_state_encoding {7750753} GOING {10}
+
+fsm_state_encoding {7750753} SAMPLE {11}
+
+fsm_registers {7750753} {state[1]}  {state[0]} 
+
+fsm_encoding {812501252} onehot
+
+fsm_state_encoding {812501252} RESET {00001}
+
+fsm_state_encoding {812501252} IDLE {00010}
+
+fsm_state_encoding {812501252} SETUP {00100}
+
+fsm_state_encoding {812501252} READING {01000}
+
+fsm_state_encoding {812501252} LOGGING {10000}
+
+fsm_registers {812501252} {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 
+
+fsm_encoding {7750753} sequential
+
+fsm_state_encoding {7750753} IDLE {00}
+
+fsm_state_encoding {7750753} SETUP {01}
+
+fsm_state_encoding {7750753} GOING {10}
+
+fsm_state_encoding {7750753} SAMPLE {11}
+
+fsm_registers {7750753} {state[1]}  {state[0]} 
+
+fsm_encoding {912101211} onehot
+
+fsm_state_encoding {912101211} RESET {00001}
+
+fsm_state_encoding {912101211} IDLE {00010}
+
+fsm_state_encoding {912101211} SETUP {00100}
+
+fsm_state_encoding {912101211} READING {01000}
+
+fsm_state_encoding {912101211} LOGGING {10000}
+
+fsm_registers {912101211} {state[4]}  {state[3]}  {state[2]}  {state[1]}  {state[0]} 

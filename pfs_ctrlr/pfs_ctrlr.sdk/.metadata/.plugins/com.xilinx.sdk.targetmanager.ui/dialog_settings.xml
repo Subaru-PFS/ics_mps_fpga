@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="/home/rumney/Documents/jpl_git/pfs/pfs_develop/pfs_ctrlr/pfs_ctrlr.sdk/pfs_ctrlr/Debug/pfs_ctrlr.elf" key="block_design_wrapper_hw_platform_0-microblaze_0-initElf"/>
+	<item value="Auto Detect" key="block_design_wrapper_hw_platform_0-device"/>
+	<item value="block_design_wrapper_hw_platform_0" key="programfpga.hwplatform"/>
+	<item value="/home/rumney/Documents/jpl_git/pfs/pfs_develop/pfs_ctrlr/pfs_ctrlr.sdk/block_design_wrapper_hw_platform_0/block_design_wrapper.mmi" key="block_design_wrapper_hw_platform_0-bmmFile"/>
+	<item value="false" key="block_design_wrapper_hw_platform_0-partial_bit"/>
+	<item value="/home/rumney/Documents/jpl_git/pfs/pfs_develop/pfs_ctrlr/pfs_ctrlr.sdk/block_design_wrapper_hw_platform_0/block_design_wrapper.bit" key="block_design_wrapper_hw_platform_0-bitFile"/>
+	<item value="Local" key="block_design_wrapper_hw_platform_0-target"/>
+</section>

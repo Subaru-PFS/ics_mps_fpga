@@ -1,0 +1,59 @@
+#Build: Synplify Pro (R) N-2017.09, Build 2922R, Aug 25 2017
+#install: C:\Synopsys\fpga_N-2017.09
+#OS: Windows 8 6.2
+#Hostname: DESKTOP-NLTECCO
+
+# Tue Sep 26 21:22:11 2017
+
+#Implementation: synthesis
+
+
+Copyright (C) 1994-2017 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: N-2017.09
+Install: C:\Synopsys\fpga_N-2017.09
+OS: Windows 6.2
+
+Hostname: DESKTOP-NLTECCO
+
+Implementation : synthesis
+Synopsys HDL Compiler, Version compdevb, Build 6367R, Built Aug 29 2017 23:42:56
+
+@N|Running in 64-bit mode
+
+Copyright (C) 1994-2017 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: N-2017.09
+Install: C:\Synopsys\fpga_N-2017.09
+OS: Windows 6.2
+
+Hostname: DESKTOP-NLTECCO
+
+Implementation : synthesis
+Synopsys Verilog Compiler, Version compdevb, Build 6367R, Built Aug 29 2017 23:42:56
+
+@N|Running in 64-bit mode
+@N:: Running Verilog Compiler in System Verilog mode
+@I::"C:\Synopsys\fpga_N-2017.09\lib\proasic\proasic3e.v" (library work)
+@I::"C:\Synopsys\fpga_N-2017.09\lib\vlog\hypermods.v" (library __hyper__lib__)
+@I::"C:\Synopsys\fpga_N-2017.09\lib\vlog\umr_capim.v" (library snps_haps)
+@I::"C:\Synopsys\fpga_N-2017.09\lib\vlog\scemi_objects.v" (library snps_haps)
+@I::"C:\Synopsys\fpga_N-2017.09\lib\vlog\scemi_pipes.svh" (library snps_haps)
+@E: Can't open file C:\Users\rumney\Desktop\jpl_projects\PFS\code\pfs_develop\driver_board_em2\src\pfs_pkgs.v
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+# Tue Sep 26 21:22:13 2017
+
+###########################################################]
+@END
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+# Tue Sep 26 21:22:13 2017
+
+###########################################################]

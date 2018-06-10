@@ -1,0 +1,178 @@
+
+Copyright (C) 1994-2017 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: N-2017.09
+Install: C:\Synopsys\fpga_N-2017.09
+OS: Windows 6.2
+
+Hostname: DESKTOP-NLTECCO
+
+Implementation : synthesis
+Synopsys HDL compiler and linker, Version compdevb, Build 6367R, Built Aug 29 2017 23:42:56
+
+Modified Files: 32
+FID:  path (prevtimestamp, timestamp)
+0        C:\Synopsys\fpga_N-2017.09\lib\proasic\proasic3e.v (N/A, 2017-08-24 09:25:16)
+1        C:\Synopsys\fpga_N-2017.09\lib\vlog\hypermods.v (N/A, 2017-08-24 12:01:16)
+2        C:\Synopsys\fpga_N-2017.09\lib\vlog\scemi_objects.v (N/A, 2017-08-24 12:01:16)
+3        C:\Synopsys\fpga_N-2017.09\lib\vlog\scemi_pipes.svh (N/A, 2017-08-24 12:01:16)
+4        C:\Synopsys\fpga_N-2017.09\lib\vlog\umr_capim.v (N/A, 2017-08-24 12:01:16)
+5        D:\pfs\pfs_develop\driver_board_em2\src\ad7265.v (N/A, 2017-09-26 21:17:56)
+6        D:\pfs\pfs_develop\driver_board_em2\src\adc_current_if.v (N/A, 2017-09-26 21:17:56)
+7        D:\pfs\pfs_develop\driver_board_em2\src\adc_temps_if.v (N/A, 2017-09-26 21:17:56)
+8        D:\pfs\pfs_develop\driver_board_em2\src\cal_norm.v (N/A, 2017-09-22 10:39:36)
+9        D:\pfs\pfs_develop\driver_board_em2\src\calibrator.v (N/A, 2017-09-22 10:39:36)
+10       D:\pfs\pfs_develop\driver_board_em2\src\clk_counter.v (N/A, 2017-09-22 10:39:36)
+11       D:\pfs\pfs_develop\driver_board_em2\src\cmd_to_bus.v (N/A, 2017-09-22 10:39:36)
+12       D:\pfs\pfs_develop\driver_board_em2\src\comm.v (N/A, 2017-09-22 10:39:36)
+13       D:\pfs\pfs_develop\driver_board_em2\src\deserializer.v (N/A, 2017-09-22 10:39:36)
+14       D:\pfs\pfs_develop\driver_board_em2\src\divider.v (N/A, 2017-09-22 10:39:36)
+15       D:\pfs\pfs_develop\driver_board_em2\src\fifo.v (N/A, 2017-09-22 10:39:36)
+16       D:\pfs\pfs_develop\driver_board_em2\src\mm_bus_read.v (N/A, 2017-09-22 10:39:36)
+17       D:\pfs\pfs_develop\driver_board_em2\src\mm_bus_write.v (N/A, 2017-09-22 10:39:36)
+18       D:\pfs\pfs_develop\driver_board_em2\src\mm_col_control.v (N/A, 2017-09-22 10:39:36)
+19       D:\pfs\pfs_develop\driver_board_em2\src\mm_states.v (N/A, 2017-09-22 10:39:36)
+20       D:\pfs\pfs_develop\driver_board_em2\src\mm_throttle.v (N/A, 2017-09-22 10:39:36)
+21       D:\pfs\pfs_develop\driver_board_em2\src\motor_driver.v (N/A, 2017-09-22 10:39:36)
+22       D:\pfs\pfs_develop\driver_board_em2\src\motor_mux.v (N/A, 2017-09-22 10:39:36)
+23       D:\pfs\pfs_develop\driver_board_em2\src\pfs.v (N/A, 2017-09-26 21:17:56)
+24       D:\pfs\pfs_develop\driver_board_em2\src\pfs_bus.v (N/A, 2017-09-22 10:39:36)
+25       D:\pfs\pfs_develop\driver_board_em2\src\pfs_bus_master.v (N/A, 2017-09-22 10:39:36)
+26       D:\pfs\pfs_develop\driver_board_em2\src\pfs_pkgs.v (N/A, 2017-09-22 10:39:36)
+27       D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39)
+28       D:\pfs\pfs_develop\driver_board_em2\src\roundrobin_mux.v (N/A, 2017-09-22 10:39:36)
+29       D:\pfs\pfs_develop\driver_board_em2\src\router.v (N/A, 2017-09-22 10:39:36)
+30       D:\pfs\pfs_develop\driver_board_em2\src\rst_deb.v (N/A, 2017-09-22 10:39:36)
+31       D:\pfs\pfs_develop\driver_board_em2\src\serializer.v (N/A, 2017-09-22 10:39:36)
+
+*******************************************************************
+Modules that may have changed as a result of file changes: 25
+MID:  lib.cell.view
+0        work.ad7265.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\ad7265.v (N/A, 2017-09-26 21:17:56) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\adc_current_if.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\adc_temps_if.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+1        work.adc_current_if.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\adc_current_if.v (N/A, 2017-09-26 21:17:56) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+2        work.adc_temps_if.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\adc_temps_if.v (N/A, 2017-09-26 21:17:56) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+3        work.cal_norm.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\cal_norm.v (N/A, 2017-09-22 10:39:36) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\calibrator.v (N/A, 2017-09-22 10:39:36) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+4        work.calibrator.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\calibrator.v (N/A, 2017-09-22 10:39:36) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+5        work.clk_counter.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\clk_counter.v (N/A, 2017-09-22 10:39:36) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+6        work.cmd_to_bus.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\cmd_to_bus.v (N/A, 2017-09-22 10:39:36) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+7        work.comm.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\comm.v (N/A, 2017-09-22 10:39:36) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+8        work.deserializer.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\deserializer.v (N/A, 2017-09-22 10:39:36) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\comm.v (N/A, 2017-09-22 10:39:36) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+9        work.divider.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\divider.v (N/A, 2017-09-22 10:39:36) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\cal_norm.v (N/A, 2017-09-22 10:39:36) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\calibrator.v (N/A, 2017-09-22 10:39:36) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+10       work.fifo.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\fifo.v (N/A, 2017-09-22 10:39:36) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\cmd_to_bus.v (N/A, 2017-09-22 10:39:36) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\comm.v (N/A, 2017-09-22 10:39:36) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\roundrobin_mux.v (N/A, 2017-09-22 10:39:36) <-- (may instantiate this module)
+11       work.mm_bus_read.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\mm_bus_read.v (N/A, 2017-09-22 10:39:36) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\motor_mux.v (N/A, 2017-09-22 10:39:36) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+12       work.mm_bus_write.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\mm_bus_write.v (N/A, 2017-09-22 10:39:36) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\motor_mux.v (N/A, 2017-09-22 10:39:36) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+13       work.mm_col_control.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\mm_col_control.v (N/A, 2017-09-22 10:39:36) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\motor_mux.v (N/A, 2017-09-22 10:39:36) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+14       work.mm_throttle.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\mm_throttle.v (N/A, 2017-09-22 10:39:36) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\motor_mux.v (N/A, 2017-09-22 10:39:36) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+15       work.motor_driver.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\motor_driver.v (N/A, 2017-09-22 10:39:36) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\motor_mux.v (N/A, 2017-09-22 10:39:36) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+16       work.motor_mux.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\motor_mux.v (N/A, 2017-09-22 10:39:36) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+20       work.pfs.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs.v (N/A, 2017-09-26 21:17:56) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+18       work.pfs_bus.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_bus.v (N/A, 2017-09-22 10:39:36) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\adc_current_if.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\adc_temps_if.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\calibrator.v (N/A, 2017-09-22 10:39:36) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\cmd_to_bus.v (N/A, 2017-09-22 10:39:36) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\motor_mux.v (N/A, 2017-09-22 10:39:36) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_bus_master.v (N/A, 2017-09-22 10:39:36) <-- (may instantiate this module)
+17       work.pfs_bus_master.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_bus_master.v (N/A, 2017-09-22 10:39:36) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+19       work.pfs_top.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (module definition)
+21       work.roundrobin_mux.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\roundrobin_mux.v (N/A, 2017-09-22 10:39:36) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+22       work.router.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\router.v (N/A, 2017-09-22 10:39:36) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+23       work.rst_deb.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\rst_deb.v (N/A, 2017-09-22 10:39:36) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+24       work.serializer.verilog may have changed because the following files changed:
+                        D:\pfs\pfs_develop\driver_board_em2\src\serializer.v (N/A, 2017-09-22 10:39:36) <-- (module definition)
+                        D:\pfs\pfs_develop\driver_board_em2\src\comm.v (N/A, 2017-09-22 10:39:36) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs.v (N/A, 2017-09-26 21:17:56) <-- (may instantiate this module)
+                        D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v (N/A, 2017-09-26 21:21:39) <-- (may instantiate this module)
+
+*******************************************************************
+Unmodified files: 0
+FID:  path (timestamp)
+
+*******************************************************************
+Unchanged modules: 0
+MID:  lib.cell.view

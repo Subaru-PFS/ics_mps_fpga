@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2017.2 (64-bit)
+# SW Build 1909853 on Thu Jun 15 18:39:10 MDT 2017
+# 
+# Start of session at: Wed Sep  6 20:01:03 2017
+# Process ID: 995
+# Current directory: /storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.sdk/webtalk
+# Command line: wbtcv -mode batch -source sdk_webtalk.tcl
+# Log file: /storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.sdk/webtalk/webtalk.log
+# Journal file: /storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.sdk/webtalk/webtalk.jou
+#-----------------------------------------------------------
+source sdk_webtalk.tcl

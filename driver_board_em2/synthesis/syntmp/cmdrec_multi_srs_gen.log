@@ -1,0 +1,7 @@
+C:\Synopsys\fpga_N-2017.09\bin64\syn_nfilter.exe  -link  -top  pfs_top  -multisrs  D:\pfs\pfs_develop\driver_board_em2\synthesis\synwork\pfs_top_comp.srs  -osyn  D:\pfs\pfs_develop\driver_board_em2\synthesis\synwork\pfs_top_mult.srs  -log  D:\pfs\pfs_develop\driver_board_em2\synthesis\synlog\pfs_top_multi_srs_gen.srr 
+relcom:C:\Synopsys\fpga_N-2017.09\bin64\syn_nfilter.exe -link -top pfs_top -multisrs ..\synwork\pfs_top_comp.srs -osyn ..\synwork\pfs_top_mult.srs -log ..\synlog\pfs_top_multi_srs_gen.srr
+rc:0 success:1 runtime:0
+file:..\synwork\pfs_top_comp.srs|io:i|time:1506486302|size:132953|exec:0|csum:4AFF3F5C61EEC1614B29B4E8A0A25B86
+file:..\synwork\pfs_top_mult.srs|io:o|time:1506486303|size:9071|exec:0|csum:
+file:..\synlog\pfs_top_multi_srs_gen.srr|io:o|time:1506486303|size:1021|exec:0|csum:
+file:C:\Synopsys\fpga_N-2017.09\bin64\syn_nfilter.exe|io:i|time:1504075632|size:8880640|exec:1|csum:27E35C00848152B858699FB6C6C9D8D4

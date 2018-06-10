@@ -1,0 +1,135 @@
+
+*** Running vivado
+    with args -log bd_f793_mac_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source bd_f793_mac_0.tcl
+
+
+****** Vivado v2017.2 (64-bit)
+  **** SW Build 1909853 on Thu Jun 15 18:39:10 MDT 2017
+  **** IP Build 1909766 on Thu Jun 15 19:58:00 MDT 2017
+    ** Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+
+source bd_f793_mac_0.tcl -notrace
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1224.488 ; gain = 77.879 ; free physical = 1165 ; free virtual = 9807
+INFO: [Synth 8-638] synthesizing module 'bd_f793_mac_0' [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ip/block_design_axi_ethernet_0_0/bd_0/ip/ip_1/synth/bd_f793_mac_0.v:67]
+INFO: [Synth 8-638] synthesizing module 'bd_f793_mac_0_support' [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ip/block_design_axi_ethernet_0_0/bd_0/ip/ip_1/synth/bd_f793_mac_0_support.v:66]
+INFO: [Synth 8-638] synthesizing module 'bd_f793_mac_0_support_resets' [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ip/block_design_axi_ethernet_0_0/bd_0/ip/ip_1/synth/bd_f793_mac_0_support_resets.v:56]
+INFO: [Synth 8-638] synthesizing module 'bd_f793_mac_0_block_reset_sync' [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ip/block_design_axi_ethernet_0_0/bd_0/ip/ip_1/synth/common/bd_f793_mac_0_block_reset_sync.v:66]
+INFO: [Synth 8-638] synthesizing module 'FDPE' [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:3904]
+INFO: [Synth 8-256] done synthesizing module 'FDPE' (1#1) [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:3904]
+INFO: [Synth 8-256] done synthesizing module 'bd_f793_mac_0_block_reset_sync' (2#1) [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ip/block_design_axi_ethernet_0_0/bd_0/ip/ip_1/synth/common/bd_f793_mac_0_block_reset_sync.v:66]
+INFO: [Synth 8-256] done synthesizing module 'bd_f793_mac_0_support_resets' (3#1) [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ip/block_design_axi_ethernet_0_0/bd_0/ip/ip_1/synth/bd_f793_mac_0_support_resets.v:56]
+INFO: [Synth 8-638] synthesizing module 'IDELAYCTRL' [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:16506]
+INFO: [Synth 8-256] done synthesizing module 'IDELAYCTRL' (4#1) [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:16506]
+INFO: [Synth 8-638] synthesizing module 'bd_f793_mac_0_block' [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ip/block_design_axi_ethernet_0_0/bd_0/ip/ip_1/synth/bd_f793_mac_0_block.v:117]
+INFO: [Synth 8-638] synthesizing module 'bd_f793_mac_0_tx_clk_gen' [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ip/block_design_axi_ethernet_0_0/bd_0/ip/ip_1/synth/bd_f793_mac_0_tx_clk_gen.v:61]
+INFO: [Synth 8-638] synthesizing module 'IBUF' [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:14470]
+INFO: [Synth 8-256] done synthesizing module 'IBUF' (5#1) [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:14470]
+INFO: [Synth 8-638] synthesizing module 'BUFGMUX' [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:696]
+INFO: [Synth 8-256] done synthesizing module 'BUFGMUX' (6#1) [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:696]
+INFO: [Synth 8-256] done synthesizing module 'bd_f793_mac_0_tx_clk_gen' (7#1) [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ip/block_design_axi_ethernet_0_0/bd_0/ip/ip_1/synth/bd_f793_mac_0_tx_clk_gen.v:61]
+INFO: [Synth 8-638] synthesizing module 'bd_f793_mac_0_block_sync_block' [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ip/block_design_axi_ethernet_0_0/bd_0/ip/ip_1/synth/common/bd_f793_mac_0_block_sync_block.v:63]
+INFO: [Synth 8-638] synthesizing module 'FDRE' [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:3964]
+INFO: [Synth 8-256] done synthesizing module 'FDRE' (8#1) [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:3964]
+INFO: [Synth 8-256] done synthesizing module 'bd_f793_mac_0_block_sync_block' (9#1) [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ip/block_design_axi_ethernet_0_0/bd_0/ip/ip_1/synth/common/bd_f793_mac_0_block_sync_block.v:63]
+INFO: [Synth 8-638] synthesizing module 'bd_f793_mac_0_gmii_if' [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ip/block_design_axi_ethernet_0_0/bd_0/ip/ip_1/synth/physical/bd_f793_mac_0_gmii_if.v:70]
+INFO: [Synth 8-638] synthesizing module 'OBUF' [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:22272]
+INFO: [Synth 8-256] done synthesizing module 'OBUF' (10#1) [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:22272]
+INFO: [Synth 8-638] synthesizing module 'IDELAYE2' [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:16519]
+INFO: [Synth 8-256] done synthesizing module 'IDELAYE2' (11#1) [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:16519]
+INFO: [Synth 8-638] synthesizing module 'ODDR' [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:25650]
+INFO: [Synth 8-256] done synthesizing module 'ODDR' (12#1) [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:25650]
+INFO: [Synth 8-638] synthesizing module 'BUFIO' [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:831]
+INFO: [Synth 8-256] done synthesizing module 'BUFIO' (13#1) [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:831]
+INFO: [Synth 8-638] synthesizing module 'BUFR' [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:884]
+INFO: [Synth 8-256] done synthesizing module 'BUFR' (14#1) [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:884]
+INFO: [Synth 8-256] done synthesizing module 'bd_f793_mac_0_gmii_if' (15#1) [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ip/block_design_axi_ethernet_0_0/bd_0/ip/ip_1/synth/physical/bd_f793_mac_0_gmii_if.v:70]
+INFO: [Synth 8-638] synthesizing module 'bd_f793_mac_0_axi4_lite_ipif_wrapper' [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ip/block_design_axi_ethernet_0_0/bd_0/ip/ip_1/synth/bd_f793_mac_0_axi4_lite_ipif_wrapper.v:75]
+INFO: [Synth 8-638] synthesizing module 'bd_f793_mac_0_axi4_lite_ipif_top' [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ip/block_design_axi_ethernet_0_0/bd_0/ip/ip_1/synth/bd_f793_mac_0_axi4_lite_ipif_top.vhd:107]
+INFO: [Synth 8-638] synthesizing module 'axi_lite_ipif' [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ipshared/0ba0/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2948]
+INFO: [Synth 8-638] synthesizing module 'slave_attachment' [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ipshared/0ba0/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2341]
+INFO: [Synth 8-638] synthesizing module 'address_decoder' [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ipshared/0ba0/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1775]
+INFO: [Synth 8-256] done synthesizing module 'address_decoder' (16#1) [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ipshared/0ba0/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1775]
+INFO: [Synth 8-256] done synthesizing module 'slave_attachment' (17#1) [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ipshared/0ba0/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2341]
+INFO: [Synth 8-256] done synthesizing module 'axi_lite_ipif' (18#1) [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ipshared/0ba0/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2948]
+INFO: [Synth 8-256] done synthesizing module 'bd_f793_mac_0_axi4_lite_ipif_top' (19#1) [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ip/block_design_axi_ethernet_0_0/bd_0/ip/ip_1/synth/bd_f793_mac_0_axi4_lite_ipif_top.vhd:107]
+INFO: [Synth 8-256] done synthesizing module 'bd_f793_mac_0_axi4_lite_ipif_wrapper' (20#1) [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ip/block_design_axi_ethernet_0_0/bd_0/ip/ip_1/synth/bd_f793_mac_0_axi4_lite_ipif_wrapper.v:75]
+INFO: [Synth 8-638] synthesizing module 'bd_f793_mac_0_vector_decode' [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ip/block_design_axi_ethernet_0_0/bd_0/ip/ip_1/synth/statistics/bd_f793_mac_0_vector_decode.v:70]
+INFO: [Synth 8-256] done synthesizing module 'bd_f793_mac_0_vector_decode' (21#1) [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ip/block_design_axi_ethernet_0_0/bd_0/ip/ip_1/synth/statistics/bd_f793_mac_0_vector_decode.v:70]
+INFO: [Synth 8-638] synthesizing module 'LUT4' [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:20572]
+INFO: [Synth 8-256] done synthesizing module 'LUT4' (37#1) [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:20572]
+INFO: [Synth 8-638] synthesizing module 'LUT4__parameterized0' [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:20572]
+INFO: [Synth 8-256] done synthesizing module 'LUT4__parameterized0' (37#1) [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:20572]
+INFO: [Synth 8-638] synthesizing module 'LUT4__parameterized1' [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:20572]
+INFO: [Synth 8-256] done synthesizing module 'LUT4__parameterized1' (37#1) [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:20572]
+INFO: [Synth 8-638] synthesizing module 'LUT4__parameterized2' [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:20572]
+INFO: [Synth 8-256] done synthesizing module 'LUT4__parameterized2' (37#1) [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:20572]
+INFO: [Synth 8-638] synthesizing module 'LUT4__parameterized3' [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:20572]
+INFO: [Synth 8-256] done synthesizing module 'LUT4__parameterized3' (37#1) [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:20572]
+INFO: [Synth 8-638] synthesizing module 'RAM64X1D' [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:37509]
+INFO: [Synth 8-256] done synthesizing module 'RAM64X1D' (50#1) [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:37509]
+INFO: [Synth 8-638] synthesizing module 'RAM64X1D__parameterized0' [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:37509]
+INFO: [Synth 8-256] done synthesizing module 'RAM64X1D__parameterized0' (50#1) [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:37509]
+INFO: [Synth 8-638] synthesizing module 'RAM64X1D__parameterized1' [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:37509]
+INFO: [Synth 8-256] done synthesizing module 'RAM64X1D__parameterized1' (51#1) [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:37509]
+INFO: [Synth 8-638] synthesizing module 'LUT3' [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:20530]
+INFO: [Synth 8-256] done synthesizing module 'LUT3' (52#1) [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:20530]
+INFO: [Synth 8-638] synthesizing module 'LUT3__parameterized0' [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:20530]
+INFO: [Synth 8-256] done synthesizing module 'LUT3__parameterized0' (52#1) [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:20530]
+INFO: [Synth 8-638] synthesizing module 'LUT3__parameterized1' [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:20530]
+INFO: [Synth 8-256] done synthesizing module 'LUT3__parameterized1' (52#1) [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:20530]
+INFO: [Synth 8-638] synthesizing module 'LUT3__parameterized2' [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:20530]
+INFO: [Synth 8-256] done synthesizing module 'LUT3__parameterized2' (52#1) [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:20530]
+INFO: [Synth 8-638] synthesizing module 'SRL16E' [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:43673]
+INFO: [Synth 8-256] done synthesizing module 'SRL16E' (53#1) [/tools/xilinx/Vivado/2017.2/scripts/rt/data/unisim_comp.v:43673]
+INFO: [Synth 8-256] done synthesizing module 'bd_f793_mac_0_block' (57#1) [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ip/block_design_axi_ethernet_0_0/bd_0/ip/ip_1/synth/bd_f793_mac_0_block.v:117]
+INFO: [Synth 8-256] done synthesizing module 'bd_f793_mac_0_support' (58#1) [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ip/block_design_axi_ethernet_0_0/bd_0/ip/ip_1/synth/bd_f793_mac_0_support.v:66]
+INFO: [Synth 8-256] done synthesizing module 'bd_f793_mac_0' (59#1) [/storage/syncthing/work/pfs_ctrlr/pfs_ctrlr.srcs/sources_1/bd/block_design/ip/block_design_axi_ethernet_0_0/bd_0/ip/ip_1/synth/bd_f793_mac_0.v:67]
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1317.988 ; gain = 171.379 ; free physical = 976 ; free virtual = 9619
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1317.988 ; gain = 171.379 ; free physical = 975 ; free virtual = 9618
+INFO: [Device 21-403] Loading part xc7k325tffg900-2
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.03 . Memory (MB): peak = 1700.066 ; gain = 0.000 ; free physical = 662 ; free virtual = 9304
+Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1700.066 ; gain = 553.457 ; free physical = 687 ; free virtual = 9341
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1700.066 ; gain = 553.457 ; free physical = 687 ; free virtual = 9341
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1700.066 ; gain = 553.457 ; free physical = 689 ; free virtual = 9342
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1700.066 ; gain = 553.457 ; free physical = 686 ; free virtual = 9329
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1700.066 ; gain = 553.457 ; free physical = 545 ; free virtual = 9188
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1700.066 ; gain = 553.457 ; free physical = 441 ; free virtual = 9089
+Finished Timing Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1749.770 ; gain = 603.160 ; free physical = 1027 ; free virtual = 9679
+Finished Technology Mapping : Time (s): cpu = 00:00:34 ; elapsed = 00:00:36 . Memory (MB): peak = 1749.770 ; gain = 603.160 ; free physical = 1013 ; free virtual = 9665
+Finished IO Insertion : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1749.770 ; gain = 603.160 ; free physical = 1013 ; free virtual = 9665
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1749.770 ; gain = 603.160 ; free physical = 1013 ; free virtual = 9665
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1749.770 ; gain = 603.160 ; free physical = 1015 ; free virtual = 9667
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1749.770 ; gain = 603.160 ; free physical = 1015 ; free virtual = 9667
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1749.770 ; gain = 603.160 ; free physical = 1015 ; free virtual = 9667
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1749.770 ; gain = 603.160 ; free physical = 1015 ; free virtual = 9667
+
+Report Cell Usage: 
++------+-----------+------+
+|      |Cell       |Count |
++------+-----------+------+
+|1     |BUFGMUX    |     1|
+|2     |BUFIO      |     1|
+|3     |BUFR       |     1|
+|4     |CARRY4     |    33|
+|5     |IDELAYCTRL |     1|
+|6     |IDELAYE2   |    10|
+|7     |LUT1       |   116|
+|8     |LUT2       |   298|
+|9     |LUT3       |   229|
+|10    |LUT4       |   278|
+|11    |LUT5       |   344|
+|12    |LUT6       |   513|
+|13    |MUXF7      |     4|
+|14    |MUXF8      |     2|
+|15    |ODDR       |     1|
+|16    |RAM64X1D   |   160|
+|17    |SRL16E     |    25|
+|18    |FDCE       |    26|
+|19    |FDPE       |    25|
+|20    |FDRE       |  2679|
+|21    |FDSE       |    79|
+|22    |IBUF       |    12|
+|23    |OBUF       |    11|
++------+-----------+------+
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1749.770 ; gain = 603.160 ; free physical = 1015 ; free virtual = 9667
+synth_design: Time (s): cpu = 00:00:37 ; elapsed = 00:00:39 . Memory (MB): peak = 1781.785 ; gain = 635.176 ; free physical = 1073 ; free virtual = 9725

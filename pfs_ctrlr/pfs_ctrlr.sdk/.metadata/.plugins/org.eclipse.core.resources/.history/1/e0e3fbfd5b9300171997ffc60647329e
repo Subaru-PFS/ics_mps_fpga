@@ -1,0 +1,407 @@
+#include "xparameters.h"
+#include "netif/xadapter.h"
+#include <stdint.h>
+#include "xil_printf.h"
+#include "lwip/tcp.h"
+
+//#include "ushell.h"
+//#include "ushell_stdio.h"
+
+#include "platform.h"
+#include "pfs_globals.h"
+#include "pfs_low_api.h"
+#include "pfs_high_api.h"
+#include "pfs_translate.h"
+#include "pfs_eth.h"
+
+// steps for 1ms pfs counter
+#define STATE_QUERY_STEPS   20
+#define PING_TIMEOUT_STEPS  250
+#define WATCHDOG_STEPS      2500
+
+// max number of pfs motor cmds to emit per loop
+#define MAX_EMITS_PER_LOOP 12
+// max number of pfs motor replies to capture per sector per loop
+#define MAX_CAPTURES_PER_LOOP 100
+
+#define OP_DISABLED_TIME 0
+
+/******************************************************************************/
+
+static void watchdog(sector_t *sector);
+static void check_ping(sector_t *sector);
+static void query_boards_busy(sector_t *sector);
+
+static void setup_op(const pfs_header *hdr);
+static void finalize_op();
+
+static void rx_capture_ping(const motor_cmd *cmd);
+static void check_timeouts(const motor_cmd *cmd);
+
+static void init();
+static void user_loop();
+
+/* missing declaration in lwIP */
+void lwip_init();
+
+/******************************************************************************/
+
+unsigned int debug_level = 3;
+
+sector_t sectors[NUM_SECTORS];
+static pfs_header response_header;
+
+motor_cmd ping_cmd = {
+    .sector = 0, // this will change
+    .board = 0, // this will change
+    .motor = CONTROL_MOTOR,
+    .reg = PFS_CTRL_VERSION,
+    .val = 0,
+    .rnw = 1
+};
+
+motor_cmd query_cmd = {
+    .sector = 0, // this will change
+    .board = 0, // this will change
+    .motor = CONTROL_MOTOR,
+    .reg = PFS_CTRL_CONTROL,
+    .val = 0,
+    .rnw = 1
+};
+
+uint32_t t_now;
+uint32_t t_op_end;
+
+uint8_t hk_callback_en;
+
+static struct netif server_netif;
+static struct ip_addr ipaddr, netmask, gw;
+
+/******************************************************************************/
+
+void print_ip(char *msg, struct ip_addr *ip) {
+	ushell_printf("%s", msg);
+	ushell_printf("%d.%d.%d.%d\n\r", ip4_addr1(ip), ip4_addr2(ip), 
+			ip4_addr3(ip), ip4_addr4(ip));
+}
+
+void print_ip_settings(struct ip_addr *ip, struct ip_addr *mask, struct ip_addr *gw) {
+	print_ip("Board IP: ", ip);
+	print_ip("Netmask : ", mask);
+	print_ip("Gateway : ", gw);
+}
+
+/******************************************************************************/
+// USHELL Function def's
+
+int main() {
+
+	init();
+	while (1) { user_loop(); }
+	return 0;
+}
+
+/*
+void early_init() {
+    int q_depth = 512*1024;
+    ushell_alloc_stdio_queues(q_depth, q_depth);
+}
+*/
+
+void init() {
+	// MAC ADDR
+	unsigned char mac_ethernet_address[] = { 0x00, 0x0a, 0x35, 0x00, 0x01, 0x02 };
+	init_platform();
+
+	// initliaze IP addresses
+	IP4_ADDR(&ipaddr,  128, 149, 77, 24);
+	IP4_ADDR(&netmask, 255, 255, 255,  0);
+	IP4_ADDR(&gw,      128, 149, 77,  1);
+
+	print_ip_settings(&ipaddr, &netmask, &gw);
+    
+    lwip_init();
+
+  	/* Add network interface to the netif_list, and set it as default */
+	if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac_ethernet_address, XPAR_AXI_ETHERNET_0_BASEADDR)) {
+		ushell_printf("Error adding N/W interface\n\r");
+		return;
+	}
+	netif_set_default(&server_netif);
+	
+
+    platform_enable_interrupts();
+	netif_set_up(&server_netif);
+
+	alloc_queues();
+	
+	pfs_start_application();
+    //ushell_start_stdio_tcp(23);
+	
+    
+    // initialize sector values and start pings
+    uint32_t sect;
+    for (sect = 0; sect < NUM_SECTORS; sect++) {
+        sectors[sect].state = PINGING;
+        sectors[sect].boards_busy = 0;
+        sectors[sect].board_count = 0;
+        sectors[sect].t_ping_end = 0;
+        sectors[sect].t_wd_end = 0;
+        sectors[sect].t_next_query = 0;
+        sectors[sect].num = sect;
+        
+        ping(&sectors[sect]);
+    }
+
+	//ushell_printf("Getting board counts on all sectors.\n\r");
+
+    t_op_end = OP_DISABLED_TIME;
+    
+    hk_callback_en = 0;
+    hk_done = 1;
+}
+
+void user_loop() {
+    cal_cmd calcmd;
+    run_cmd runcmd;
+    setf_cmd setfcmd;
+    hk_cmd hkcmd;
+    uint32_t sect;
+    uint32_t i;
+    motor_cmd cmd;
+    
+    // processing incoming tcp packets
+    xemacif_input(&server_netif);
+    parse_tcp(&tcp_rx_q);
+    
+    // handling watchdogs, pinging, & checking for busy boards
+    for (sect = 0; sect < NUM_SECTORS; sect++) {
+        watchdog(&sectors[sect]);
+        check_ping(&sectors[sect]);
+        query_boards_busy(&sectors[sect]);
+        
+    }
+    
+    // if there is no op going look for one to run
+    if (t_op_end == OP_DISABLED_TIME) {
+        if ( cal_q.deq(&cal_q, &calcmd) ) {
+            requeue_cal(&motor_cmd_q, &calcmd);
+            setup_op(&calcmd.hdr);
+            
+        } else if ( run_q.deq(&run_q, &runcmd) ) {
+            requeue_run(&motor_cmd_q, &runcmd);
+            setup_op(&runcmd.hdr);
+            
+        } else if ( setf_q.deq(&setf_q, &setfcmd) ) {
+            requeue_setf(&motor_cmd_q, &setfcmd);
+            setup_op(&setfcmd.hdr);
+            
+        } else if ( hk_q.deq(&hk_q, &hkcmd) ) {
+            requeue_hk(&motor_cmd_q, &hkcmd);
+            hk_callback_en = 1;
+            setup_op(&hkcmd.hdr);
+            
+        }
+    // otherwise try to finalize the one going
+    } else {
+        finalize_op();
+    }
+    
+    // emit some commands queued in the motor command queue
+    for (i = 0; i < MAX_EMITS_PER_LOOP; i++) {
+		if (motor_cmd_q.deq(&motor_cmd_q, &cmd)) {
+			//DBG_PRINTF(2,"Dequeued, Attempting to emit...");
+            emit(&cmd);
+
+		} else {
+            // no more cmds, break out
+			break;
+		}
+	}
+
+    // attempt to capture up to MAX_CAPTURES_PER_LOOP replies for each sector
+    i = 0;
+    for (sect = 0; sect < NUM_SECTORS; sect++) {
+    	while ((i < MAX_CAPTURES_PER_LOOP) & (capture(sect, &cmd) == 0)) {
+    		//rx_print(&cmd);
+			rx_capture_ping(&cmd);
+			check_timeouts(&cmd);
+			if (hk_callback_en) { hk_response_cb(&cmd); }
+			i++;
+    	}
+    }
+}
+
+/******************************************************************************/
+// Driver Cmd Rx Callbacks
+
+static void check_timeouts(const motor_cmd *cmd) {
+    static sector_t *sector;
+    static uint32_t busy_mask = ((1 << PFS_CTRL_RUN_BIT) | 
+                                 (1 << PFS_CTRL_CAL_BIT));
+    
+    if ((cmd->motor == query_cmd.motor) && (cmd->reg == query_cmd.reg)) {
+        sector = &sectors[cmd->sector];
+        
+        if (cmd->val & busy_mask) {
+            // board is busy, set the bit corresponding to this board
+            sector->boards_busy |= (1 << cmd->board);
+        } else {
+            // board is not busy, clear the bit
+            sector->boards_busy &= ~(1 << cmd->board);
+        }
+    }
+}
+
+static void rx_capture_ping(const motor_cmd *cmd){
+    static sector_t *sector;
+    
+    if ( (cmd->motor == ping_cmd.motor) && (cmd->reg == ping_cmd.reg) ) {
+         sector = &sectors[cmd->sector];
+         DBG_PRINTF(2, "Sect%d Ping Rxd", sector->num);
+
+         // catches watchdog responses
+         if (sector->state == WD_GOING) {
+             sector->state = READY;
+             
+         } else if (sector->state == PINGING) {
+             // update board count, and start a new ping
+             sector->board_count = cmd->board + 1;
+             ping(sector);
+         }    
+     }
+}
+
+/******************************************************************************/
+
+static void setup_op(const pfs_header *hdr) {
+    uint32_t sect;
+
+    DBG_PRINTF(2, "Op %d (# %d) (ncmds %d) (timeout %d)",
+        hdr->opcode, hdr->count, hdr->ncmds, hdr->timeout
+    );
+    
+    get_pfs_time(&t_now);
+    
+    t_op_end = t_now + hdr->timeout;
+    response_header = *hdr;
+    
+    for (sect = 0; sect < NUM_SECTORS; sect++) {
+        sectors[sect].t_next_query = t_now + STATE_QUERY_STEPS;
+        // need to set boards to busy, but only boards that exist in sector
+        if (sectors[sect].board_count > 0) {
+            sectors[sect].boards_busy = (1 << sectors[sect].board_count) -1;
+        }
+    }
+}
+
+static void finalize_op() {
+    uint32_t sect;
+    pfs_response_code resp_code;
+    uint8_t busy = 0;
+    
+    // set busy if any sector has a non-zero bit in boards_busy
+    for (sect = 0; sect < NUM_SECTORS; sect++) {
+        busy |= (sectors[sect].boards_busy != 0);
+    }
+    
+    // also set busy if the op is an HK, and hk_done is not set
+    busy |= (response_header.opcode == CMD_HK) & ~hk_done;
+    
+    get_pfs_time(&t_now);
+    // if we aren't busy or the op has timed out, finalize the op
+    if ((~busy) | (t_now > t_op_end)) {
+        DBG_PRINTF(2, "Op suceeded.");
+        
+        t_op_end = OP_DISABLED_TIME;
+        resp_code = ((t_now > t_op_end) & busy) ? PFS_TIMEOUT:PFS_NO_ERROR;
+        hk_callback_en = 0;
+        
+        if(response_header.opcode == CMD_HK) {
+            send_hk_tlm(&response_header, resp_code);
+        } else {
+            send_tlm(&response_header, resp_code, 0);
+        }
+    }
+}
+
+/******************************************************************************/
+// various cmds run on a sector
+
+void ping(sector_t *sector) {
+	if (sector->state != PINGING) {sector->board_count = 0;}
+
+    ping_cmd.sector = sector->num;
+    // want to ping the next board beyond what we know to be there
+    ping_cmd.board = sector->board_count;
+
+    emit(&ping_cmd);
+    
+    get_pfs_time(&t_now);
+    sector->t_ping_end = t_now + PING_TIMEOUT_STEPS;
+    sector->state = PINGING;
+	sector->boards_busy = 0;
+}
+
+static void query_boards_busy(sector_t *sector) {
+    int brd;
+
+    get_pfs_time(&t_now);
+    
+    // if not time for new query or there is no op running so no need to query
+    if ((t_now < sector->t_next_query) || (t_op_end == OP_DISABLED_TIME)) {
+        return;
+    }
+        
+    for (brd = (sector->board_count-1); brd >= 0; brd--) {
+        // if this board is busy for this sector, then query it's control reg
+        if ((sector->boards_busy >> brd) & 0x01) {
+            query_cmd.board = brd;
+            query_cmd.sector = sector->num;
+            emit(&query_cmd);
+        } 
+    }
+    
+    sector->t_next_query = t_now + STATE_QUERY_STEPS;
+}
+
+static void watchdog(sector_t *sector) {
+    get_pfs_time(&t_now);
+    
+    if (t_now < sector->t_wd_end) {
+        return;
+    }
+    
+    if (sector->state == WD_GOING) {
+        // watchdog timed out, enter ping state and ping board 0
+        ping(sector);
+        
+        DBG_PRINTF(0, "Sect%d brd%d not responding.\r\n", 
+                sector->num, sector->board_count-1);
+        
+    } else if ((sector->state == READY) && (sector->board_count != 0)) {
+        // all good, enter watchdog state and ping the last board in chain
+        sector->state = WD_GOING;
+        sector->t_wd_end = t_now + WATCHDOG_STEPS;
+        ping_cmd.sector = sector->num;
+        ping_cmd.board = sector->board_count - 1;
+        emit(&ping_cmd);
+    }
+}
+
+static void check_ping(sector_t *sector) {
+    get_pfs_time(&t_now);
+    
+    // if we aren't pinging or time is not up
+    if ((sector->state != PINGING) | (t_now < sector->t_ping_end)) {
+    	//DBG_PRINTF(1, "tnow: %d < %d", t_now, sector->t_ping_end);
+        return;
+    }
+    // otherwise finalize the board count by returning to READY state
+    sector->state = READY;
+    DBG_PRINTF(2, "Sect%d has %d brds", sector->num, sector->board_count);
+}
+
+
+
+

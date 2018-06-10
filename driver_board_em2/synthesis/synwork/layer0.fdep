@@ -1,0 +1,162 @@
+#OPTIONS:"|-layerid|0|-orig_srs|D:\\pfs\\pfs_develop\\driver_board_em2\\synthesis\\synwork\\pfs_top_comp.srs|-top|pfs_top|-prodtype|synplify_pro|-nram|-fixsmult|-divnmod|-I|D:\\pfs\\pfs_develop\\driver_board_em2\\synthesis\\|-I|C:\\Synopsys\\fpga_N-2017.09\\lib|-sysv|-devicelib|C:\\Synopsys\\fpga_N-2017.09\\lib\\proasic\\proasic3e.v|-encrypt|-pro|-ui|-fid2|-ram|-sharing|off|-ll|2000|-autosm|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work|-lib|work"
+#CUR:"C:\\Synopsys\\fpga_N-2017.09\\bin64\\c_ver.exe":1504075454
+#CUR:"C:\\Synopsys\\fpga_N-2017.09\\lib\\proasic\\proasic3e.v":1503591916
+#CUR:"C:\\Synopsys\\fpga_N-2017.09\\lib\\vlog\\hypermods.v":1503601276
+#CUR:"C:\\Synopsys\\fpga_N-2017.09\\lib\\vlog\\umr_capim.v":1503601276
+#CUR:"C:\\Synopsys\\fpga_N-2017.09\\lib\\vlog\\scemi_objects.v":1503601276
+#CUR:"C:\\Synopsys\\fpga_N-2017.09\\lib\\vlog\\scemi_pipes.svh":1503601276
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\pfs_pkgs.v":1506101976
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\mm_states.v":1506101976
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\ad7265.v":1506485876
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\adc_current_if.v":1506485876
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\adc_temps_if.v":1506485876
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\calibrator.v":1506101976
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\divider.v":1506101976
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\cal_norm.v":1506101976
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\clk_counter.v":1506101976
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\cmd_to_bus.v":1506101976
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\comm.v":1506101976
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\deserializer.v":1506101976
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\fifo.v":1506101976
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\mm_bus_read.v":1506101976
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\mm_bus_write.v":1506101976
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\mm_col_control.v":1506101976
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\mm_throttle.v":1506101976
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\motor_driver.v":1506101976
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\motor_mux.v":1506101976
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\pfs.v":1506485876
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\pfs_bus.v":1506101976
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\pfs_bus_master.v":1506101976
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\pfs_top.v":1506486099
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\roundrobin_mux.v":1506101976
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\router.v":1506101976
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\rst_deb.v":1506101976
+#CUR:"D:\\pfs\\pfs_develop\\driver_board_em2\\src\\serializer.v":1506101976
+#numinternalfiles:5
+#defaultlanguage:verilog
+0			"D:\pfs\pfs_develop\driver_board_em2\src\pfs_pkgs.v" verilog
+1			"D:\pfs\pfs_develop\driver_board_em2\src\mm_states.v" verilog
+2			"D:\pfs\pfs_develop\driver_board_em2\src\ad7265.v" verilog
+3			"D:\pfs\pfs_develop\driver_board_em2\src\adc_current_if.v" verilog
+4			"D:\pfs\pfs_develop\driver_board_em2\src\adc_temps_if.v" verilog
+5			"D:\pfs\pfs_develop\driver_board_em2\src\calibrator.v" verilog
+6			"D:\pfs\pfs_develop\driver_board_em2\src\divider.v" verilog
+7			"D:\pfs\pfs_develop\driver_board_em2\src\cal_norm.v" verilog
+8			"D:\pfs\pfs_develop\driver_board_em2\src\clk_counter.v" verilog
+9			"D:\pfs\pfs_develop\driver_board_em2\src\cmd_to_bus.v" verilog
+10			"D:\pfs\pfs_develop\driver_board_em2\src\comm.v" verilog
+11			"D:\pfs\pfs_develop\driver_board_em2\src\deserializer.v" verilog
+12			"D:\pfs\pfs_develop\driver_board_em2\src\fifo.v" verilog
+13			"D:\pfs\pfs_develop\driver_board_em2\src\mm_bus_read.v" verilog
+14			"D:\pfs\pfs_develop\driver_board_em2\src\mm_bus_write.v" verilog
+15			"D:\pfs\pfs_develop\driver_board_em2\src\mm_col_control.v" verilog
+16			"D:\pfs\pfs_develop\driver_board_em2\src\mm_throttle.v" verilog
+17			"D:\pfs\pfs_develop\driver_board_em2\src\motor_driver.v" verilog
+18			"D:\pfs\pfs_develop\driver_board_em2\src\motor_mux.v" verilog
+19			"D:\pfs\pfs_develop\driver_board_em2\src\pfs.v" verilog
+20			"D:\pfs\pfs_develop\driver_board_em2\src\pfs_bus.v" verilog
+21			"D:\pfs\pfs_develop\driver_board_em2\src\pfs_bus_master.v" verilog
+22			"D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v" verilog
+23			"D:\pfs\pfs_develop\driver_board_em2\src\roundrobin_mux.v" verilog
+24			"D:\pfs\pfs_develop\driver_board_em2\src\router.v" verilog
+25			"D:\pfs\pfs_develop\driver_board_em2\src\rst_deb.v" verilog
+26			"D:\pfs\pfs_develop\driver_board_em2\src\serializer.v" verilog
+#Dependency Lists(Uses List)
+0 -1
+1 -1
+2 -1
+3 0 2 20
+4 0 2 20
+5 0 7 20
+6 -1
+7 6
+8 -1
+9 0 12 20
+10 11 12 26
+11 -1
+12 -1
+13 0 1
+14 0 1
+15 0 1
+16 0 1
+17 0
+18 0 1 13 15 14 16 17 20
+19 0 20 24 10 21 9 23 18 5 3 4
+20 0
+21 0 20
+22 0 25 8 19
+23 12
+24 0
+25 -1
+26 -1
+#Dependency Lists(Users Of)
+0 3 4 5 9 13 14 15 16 17 18 19 20 21 22 24
+1 13 14 15 16 18
+2 3 4
+3 19
+4 19
+5 19
+6 7
+7 5
+8 22
+9 19
+10 19
+11 10
+12 9 10 23
+13 18
+14 18
+15 18
+16 18
+17 18
+18 19
+19 22
+20 3 4 5 9 18 19 21
+21 19
+22 -1
+23 19
+24 19
+25 22
+26 10
+#Design Unit to File Association
+package work PFS 0
+package work MM_STATES 1
+module work ad7265 2
+package work work_D:\pfs\pfs_develop\driver_board_em2\src\adc_current_if.v_unit 3
+module work adc_current_if 3
+package work work_D:\pfs\pfs_develop\driver_board_em2\src\adc_temps_if.v_unit 4
+module work adc_temps_if 4
+package work work_D:\pfs\pfs_develop\driver_board_em2\src\calibrator.v_unit 5
+module work cal_norm 7
+module work calibrator 5
+module work divider 6
+module work clk_counter 8
+package work work_D:\pfs\pfs_develop\driver_board_em2\src\cmd_to_bus.v_unit 9
+module work fifo 12
+module work cmd_to_bus 9
+module work deserializer 11
+module work serializer 26
+module work comm 10
+package work work_D:\pfs\pfs_develop\driver_board_em2\src\mm_bus_read.v_unit 13
+module work mm_bus_read 13
+package work work_D:\pfs\pfs_develop\driver_board_em2\src\mm_bus_write.v_unit 14
+module work mm_bus_write 14
+package work work_D:\pfs\pfs_develop\driver_board_em2\src\mm_col_control.v_unit 15
+module work mm_col_control 15
+package work work_D:\pfs\pfs_develop\driver_board_em2\src\mm_throttle.v_unit 16
+module work mm_throttle 16
+package work work_D:\pfs\pfs_develop\driver_board_em2\src\motor_driver.v_unit 17
+module work motor_driver 17
+package work work_D:\pfs\pfs_develop\driver_board_em2\src\motor_mux.v_unit 18
+module work motor_mux 18
+package work work_D:\pfs\pfs_develop\driver_board_em2\src\pfs.v_unit 19
+interface work pfs_bus 20
+module work router 24
+module work pfs_bus_master 21
+module work roundrobin_mux 23
+module work pfs 19
+package work work_D:\pfs\pfs_develop\driver_board_em2\src\pfs_bus.v_unit 20
+package work work_D:\pfs\pfs_develop\driver_board_em2\src\pfs_bus_master.v_unit 21
+package work work_D:\pfs\pfs_develop\driver_board_em2\src\pfs_top.v_unit 22
+module work rst_deb 25
+module work pfs_top 22
+package work work_D:\pfs\pfs_develop\driver_board_em2\src\router.v_unit 24

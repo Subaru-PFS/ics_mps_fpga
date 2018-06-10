@@ -1,0 +1,130 @@
+# EM2
+set_io "*" -fixed
+set_io "*" -iostd LVCMOS33
+
+# bank 6
+set_io test_io6 -pinname Y2
+set_io test_io4 -pinname W2
+set_io c2p4_pwm1_l1 -pinname U3
+set_io test_io1 -pinname U2
+set_io test_io5 -pinname W1
+set_io test_io3 -pinname V1
+set_io test_io2 -pinname U1
+set_io c2p4_pwm1_h1 -pinname T1
+set_io c2p4_pwm2_l1 -pinname T2
+set_io c3p4_pwm1_l2 -pinname R2
+set_io c3p4_pwm1_l1 -pinname R1
+set_io c3p4_pwm1_h2 -pinname P1
+set_io c2p4_pwm2_l3 -pinname N2
+set_io c2p4_pwm1_l3 -pinname P2
+set_io sleep_c2p4_a -pinname M2
+set_io c2p4_pwm1_h3 -pinname N1
+set_io c2p4_pwm1_l7 -pinname L1
+set_io reset_db -pinname N6
+set_io pwr_on_reset -pinname M5
+
+# bank 2
+set_io c2p4_pwm2_h1 -pinname D21
+set_io c2p4_pwm1_h8 -pinname C21
+set_io c2p4_pwm1_h6 -pinname F21
+set_io sleep_c3p4_b -pinname F22
+set_io sleep_c2p4_b -pinname E22
+set_io c3p4_pwm2_l8 -pinname G21
+set_io c3p4_pwm2_h1 -pinname G22
+set_io c3p4_pwm2_l2 -pinname H22
+set_io c2p4_pwm1_l2 -pinname K22
+set_io c2p4_pwm2_l2 -pinname J22
+set_io c2p4_pwm2_h2 -pinname K21
+set_io c3p4_pwm2_h2 -pinname J21
+set_io c2p4_pwm1_h2 -pinname L21
+set_io c3p4_pwm2_l3 -pinname L22
+set_io c3p4_pwm2_l4 -pinname L15
+set_io clk_prv -pinname K16 -res_pull down
+set_io c3p4_pwm2_h3 -pinname L16
+
+# bank 7
+set_io c2p4_pwm2_h7 -pinname L4
+set_io c2p4_pwm2_l7 -pinname L3
+set_io c2p4_pwm1_h7 -pinname L2
+set_io adc2_range_sel -pinname K1
+set_io adc2_addr2 -pinname K2
+set_io adc2_addr1 -pinname J1
+set_io adc2_addr0 -pinname J2
+set_io adc2_cs -pinname H1
+set_io adc2_out_a -pinname G1
+set_io adc1_addr1 -pinname G2
+set_io adc2_sclk -pinname H2
+set_io adc1_range_sel -pinname E1
+set_io adc1_addr2 -pinname D1
+#set_io adc2_out_b -pinname F1
+set_io adc1_addr0 -pinname F2
+set_io adc1_cs -pinname D3
+set_io adc1_sclk -pinname E4
+
+# bank 0
+set_io adc1_out_a -pinname D5
+set_io adc1_out_b -pinname D6
+set_io sfw_3p3 -pinname C4
+set_io sfw_10 -pinname B3
+set_io c3p4_pwm2_l1 -pinname B8
+set_io c3p4_pwm1_h1 -pinname B9
+set_io c2p4_pwm2_h3 -pinname B10
+set_io c3p4_pwm1_l3 -pinname C11
+set_io c3p4_pwm1_h3 -pinname B11
+
+# bank 1
+set_io c3p4_pwm1_l4 -pinname C12
+set_io sleep_c3p4_a -pinname A16
+set_io c3p4_pwm1_l7 -pinname A17
+set_io c3p4_pwm1_h7 -pinname B17
+set_io c3p4_pwm1_l8 -pinname A18
+set_io c2p4_pwm2_l8 -pinname A19
+set_io c3p4_pwm1_h8 -pinname B19
+set_io c2p4_pwm1_l8 -pinname B20
+set_io c2p4_pwm2_h8 -pinname C19
+
+# bank 3
+set_io clk_nxt -pinname M16
+set_io c3p4_pwm2_h4 -pinname M15
+set_io rclk_nxt -pinname M17 -res_pull down 
+set_io c2p4_pwm1_h4 -pinname R22
+set_io reset_nxt_fpga -pinname V22
+set_io cs_bypass -pinname U22
+set_io reset_prv_fpga -pinname W22 -res_pull up
+
+# bank 5
+set_io c2p4_pwm1_l5 -pinname AB10
+set_io sleep_c2p4_d -pinname AB11
+set_io c3p4_pwm1_h6 -pinname AA10
+set_io c3p4_pwm1_l6 -pinname AA9
+set_io cmd_prv -pinname W10 -res_pull down
+set_io resp_prv -pinname Y10 
+set_io c2p4_pwm2_l5 -pinname AB8
+set_io c2p4_pwm1_h5 -pinname AB9
+set_io c3p4_pwm2_l5 -pinname AB6
+set_io c2p4_pwm2_h5 -pinname AB7
+set_io c3p4_pwm2_l6 -pinname AA7
+set_io c3p4_pwm2_h6 -pinname AA8
+set_io c2p4_pwm2_h4 -pinname W8
+set_io c2p4_pwm2_l4 -pinname W9
+set_io c3p4_pwm1_l5 -pinname AB4
+set_io c3p4_pwm2_h5 -pinname AB5
+set_io resp_nxt -pinname AA5 -res_pull down 
+set_io c3p4_pwm1_h4 -pinname AA6
+set_io c3p4_pwm1_h5 -pinname Y6
+set_io c2p4_pwm1_l4 -pinname Y7
+set_io cmd_nxt -pinname AA4
+set_io test_io7 -pinname Y3
+set_io test_io8 -pinname AA3
+
+# bank 4
+set_io c2p4_pwm2_l6 -pinname AA14
+set_io c2p4_pwm1_l6 -pinname AB14
+set_io c3p4_pwm2_l7 -pinname AB12
+set_io sleep_c2p4_c -pinname AB13
+set_io sleep_c3p4_c -pinname AA12
+set_io c2p4_pwm2_h6 -pinname AA13
+set_io c3p4_pwm2_h7 -pinname Y12
+set_io sleep_c3p4_d -pinname AA11
+set_io rclk_prv -pinname W11 
+set_io c3p4_pwm2_h8 -pinname Y11

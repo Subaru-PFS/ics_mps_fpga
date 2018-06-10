@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2017.2 (64-bit)
+# SW Build 1909853 on Thu Jun 15 18:39:10 MDT 2017
+# 
+# Start of session at: Wed Sep 13 09:13:21 2017
+# Process ID: 24247
+# Current directory: /home/rumney/Documents/jpl_git/pfs/pfs_develop/pfs_ctrlr/pfs_ctrlr.sdk/webtalk
+# Command line: wbtcv -mode batch -source sdk_webtalk.tcl
+# Log file: /home/rumney/Documents/jpl_git/pfs/pfs_develop/pfs_ctrlr/pfs_ctrlr.sdk/webtalk/webtalk.log
+# Journal file: /home/rumney/Documents/jpl_git/pfs/pfs_develop/pfs_ctrlr/pfs_ctrlr.sdk/webtalk/webtalk.jou
+#-----------------------------------------------------------
+source sdk_webtalk.tcl

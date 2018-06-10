@@ -1,0 +1,206 @@
+08:20:59 **** Clean-only build of configuration Debug for project pfs_ctrlr ****
+make clean 
+rm -rf  ./src/pfs.o ./src/pfs_eth.o ./src/pfs_queues.o ./src/pfs_translate.o ./src/platform.o ./src/platform_mb.o ./src/project.o ./src/queue.o  ./src/pfs.d ./src/pfs_eth.d ./src/pfs_queues.d ./src/pfs_translate.d ./src/platform.d ./src/platform_mb.d ./src/project.d ./src/queue.d  pfs_ctrlr.elf.size  pfs_ctrlr.elf
+ 
+08:20:59 **** Clean-only build of project eth_bsp ****
+make -k clean 
+make -C microblaze_0/libsrc/bram_v4_1/src -s clean 
+make -C microblaze_0/libsrc/cpu_v2_6/src -s clean 
+make -C microblaze_0/libsrc/standalone_v6_3/src -s clean 
+make -C microblaze_0/libsrc/intc_v3_6/src -s clean 
+make -C microblaze_0/libsrc/axidma_v9_3/src -s clean 
+make -C microblaze_0/libsrc/uartlite_v3_2/src -s clean 
+make -C microblaze_0/libsrc/axiethernet_v5_5/src -s clean 
+make -C microblaze_0/libsrc/lwip141_v1_8/src -s clean 
+make -C microblaze_0/libsrc/tmrctr_v4_3/src -s clean 
+rm -f microblaze_0/lib/libxil.a
+08:20:59 **** Build of project eth_bsp ****
+make -k all 
+Running Make include in microblaze_0/libsrc/bram_v4_1/src
+make -C microblaze_0/libsrc/bram_v4_1/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift -mxl-multiply-high -mxl-pattern-compare" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/cpu_v2_6/src
+make -C microblaze_0/libsrc/cpu_v2_6/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift -mxl-multiply-high -mxl-pattern-compare" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/standalone_v6_3/src
+make -C microblaze_0/libsrc/standalone_v6_3/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift -mxl-multiply-high -mxl-pattern-compare" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/intc_v3_6/src
+make -C microblaze_0/libsrc/intc_v3_6/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift -mxl-multiply-high -mxl-pattern-compare" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/axidma_v9_3/src
+make -C microblaze_0/libsrc/axidma_v9_3/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift -mxl-multiply-high -mxl-pattern-compare" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/uartlite_v3_2/src
+make -C microblaze_0/libsrc/uartlite_v3_2/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift -mxl-multiply-high -mxl-pattern-compare" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/axiethernet_v5_5/src
+make -C microblaze_0/libsrc/axiethernet_v5_5/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift -mxl-multiply-high -mxl-pattern-compare" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/lwip141_v1_8/src
+make -C microblaze_0/libsrc/lwip141_v1_8/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift -mxl-multiply-high -mxl-pattern-compare" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/tmrctr_v4_3/src
+make -C microblaze_0/libsrc/tmrctr_v4_3/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift -mxl-multiply-high -mxl-pattern-compare" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make libs in microblaze_0/libsrc/bram_v4_1/src
+make -C microblaze_0/libsrc/bram_v4_1/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift -mxl-multiply-high -mxl-pattern-compare" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling bram
+mb-ar: creating ../../../lib/libxil.a
+Running Make libs in microblaze_0/libsrc/cpu_v2_6/src
+make -C microblaze_0/libsrc/cpu_v2_6/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift -mxl-multiply-high -mxl-pattern-compare" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling cpu
+Running Make libs in microblaze_0/libsrc/standalone_v6_3/src
+make -C microblaze_0/libsrc/standalone_v6_3/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift -mxl-multiply-high -mxl-pattern-compare" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling standalone
+Running Make libs in microblaze_0/libsrc/intc_v3_6/src
+make -C microblaze_0/libsrc/intc_v3_6/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift -mxl-multiply-high -mxl-pattern-compare" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling intc
+Running Make libs in microblaze_0/libsrc/axidma_v9_3/src
+make -C microblaze_0/libsrc/axidma_v9_3/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift -mxl-multiply-high -mxl-pattern-compare" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling axidma
+Running Make libs in microblaze_0/libsrc/uartlite_v3_2/src
+make -C microblaze_0/libsrc/uartlite_v3_2/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift -mxl-multiply-high -mxl-pattern-compare" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling uartlite
+Running Make libs in microblaze_0/libsrc/axiethernet_v5_5/src
+make -C microblaze_0/libsrc/axiethernet_v5_5/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift -mxl-multiply-high -mxl-pattern-compare" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling axiethernet
+Running Make libs in microblaze_0/libsrc/lwip141_v1_8/src
+make -C microblaze_0/libsrc/lwip141_v1_8/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift -mxl-multiply-high -mxl-pattern-compare" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling lwip src and adapter files
+contrib/ports/xilinx/netif/xaxiemacif_physpeed.c: In function 'get_phy_negotiated_speed':
+contrib/ports/xilinx/netif/xaxiemacif_physpeed.c:254:6: warning: unused variable 'temp' [-Wunused-variable]
+  u16 temp;
+      ^~~~
+contrib/ports/xilinx/netif/xaxiemacif_physpeed.c:253:6: warning: unused variable 'TimeOut' [-Wunused-variable]
+  int TimeOut;
+      ^~~~~~~
+contrib/ports/xilinx/netif/xaxiemacif_physpeed.c:247:6: warning: unused variable 'phy_val' [-Wunused-variable]
+  u16 phy_val;
+      ^~~~~~~
+contrib/ports/xilinx/netif/xaxiemacif_physpeed.c: In function 'get_phy_speed_TI_DP83867':
+contrib/ports/xilinx/netif/xaxiemacif_physpeed.c:388:6: warning: unused variable 'partner_capabilities' [-Wunused-variable]
+  u16 partner_capabilities;
+      ^~~~~~~~~~~~~~~~~~~~
+contrib/ports/xilinx/netif/xaxiemacif_physpeed.c:387:6: warning: unused variable 'status' [-Wunused-variable]
+  u16 status;
+      ^~~~~~
+contrib/ports/xilinx/netif/xaxiemacif_physpeed.c: In function 'get_phy_speed_TI_DP83867_SGMII':
+contrib/ports/xilinx/netif/xaxiemacif_physpeed.c:424:6: warning: unused variable 'partner_capabilities' [-Wunused-variable]
+  u16 partner_capabilities;
+      ^~~~~~~~~~~~~~~~~~~~
+contrib/ports/xilinx/netif/xaxiemacif_physpeed.c:423:6: warning: unused variable 'temp1' [-Wunused-variable]
+  u16 temp1;
+      ^~~~~
+contrib/ports/xilinx/netif/xaxiemacif_physpeed.c:420:6: warning: unused variable 'phy_val' [-Wunused-variable]
+  u16 phy_val;
+      ^~~~~~~
+contrib/ports/xilinx/netif/xaxiemacif_physpeed.c: In function 'get_phy_speed_88E1111':
+contrib/ports/xilinx/netif/xaxiemacif_physpeed.c:561:6: warning: unused variable 'status' [-Wunused-variable]
+  u16 status;
+      ^~~~~~
+contrib/ports/xilinx/netif/xaxiemacif_physpeed.c: In function 'get_IEEE_phy_speed':
+contrib/ports/xilinx/netif/xaxiemacif_physpeed.c:643:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+contrib/ports/xilinx/netif/xaxiemacif_dma.c: In function 'axidma_send_handler':
+contrib/ports/xilinx/netif/xaxiemacif_dma.c:269:16: warning: variable 'xaxiemac' set but not used [-Wunused-but-set-variable]
+  XAxiEthernet *xaxiemac;
+                ^~~~~~~~
+contrib/ports/xilinx/netif/xaxiemacif_dma.c:268:22: warning: variable 'xtopologyp' set but not used [-Wunused-but-set-variable]
+  struct xtopology_t *xtopologyp;
+                      ^~~~~~~~~~
+contrib/ports/xilinx/netif/xaxiemacif_dma.c: In function 'setup_rx_bds':
+contrib/ports/xilinx/netif/xaxiemacif_dma.c:370:227: warning: suggest braces around empty body in an 'else' statement [-Wempty-body]
+     LWIP_DEBUGF(NETIF_DEBUG, ("set of BDs was rejected because the first BD did not have its start-of-packet bit set, or the last BD did not have its end-of-packet bit set, or any one of the BD set has 0 as length value\r\n"));
+                                                                                                                                                                                                                                   ^
+contrib/ports/xilinx/netif/xaxiemacif_dma.c:315:15: warning: unused variable 'i' [-Wunused-variable]
+  s32_t n_bds, i;
+               ^
+contrib/ports/xilinx/netif/xaxiemacif_dma.c: In function 'axidma_recv_handler':
+contrib/ports/xilinx/netif/xaxiemacif_dma.c:439:33: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   for (i = 0, rxbd = rxbdset; i < bd_processed; i++) {
+                                 ^
+contrib/ports/xilinx/netif/xaxiemacif_dma.c:387:16: warning: variable 'xaxiemac' set but not used [-Wunused-but-set-variable]
+  XAxiEthernet *xaxiemac;
+                ^~~~~~~~
+contrib/ports/xilinx/netif/xaxiemacif_dma.c:386:22: warning: variable 'xtopologyp' set but not used [-Wunused-but-set-variable]
+  struct xtopology_t *xtopologyp;
+                      ^~~~~~~~~~
+contrib/ports/xilinx/netif/xaxiemacif_dma.c: In function 'process_sent_bds':
+contrib/ports/xilinx/netif/xaxiemacif_dma.c:503:10: warning: unused variable 'status' [-Wunused-variable]
+  XStatus status;
+          ^~~~~~
+At top level:
+contrib/ports/xilinx/netif/xaxiemacif_dma.c:148:13: warning: 'bd_csum_set' defined but not used [-Wunused-function]
+ static void bd_csum_set(XAxiDma_Bd *bd, u16_t tx_csbegin, u16_t tx_csinsert,
+             ^~~~~~~~~~~
+contrib/ports/xilinx/netif/xaxiemacif_dma.c:127:13: warning: 'bd_csum_disable' defined but not used [-Wunused-function]
+ static void bd_csum_disable(XAxiDma_Bd *bd)
+             ^~~~~~~~~~~~~~~
+Running Make libs in microblaze_0/libsrc/tmrctr_v4_3/src
+make -C microblaze_0/libsrc/tmrctr_v4_3/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mno-xl-soft-mul -mxl-barrel-shift -mxl-multiply-high -mxl-pattern-compare" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling tmrctr
+Finished building libraries
+08:21:05 **** Build of configuration Debug for project pfs_ctrlr ****
+make all 
+Building file: ../src/pfs.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/pfs.o" -I../../eth_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/pfs.d" -MT"src/pfs.o" -o "src/pfs.o" "../src/pfs.c"
+Finished building: ../src/pfs.c
+ 
+Building file: ../src/pfs_eth.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/pfs_eth.o" -I../../eth_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/pfs_eth.d" -MT"src/pfs_eth.o" -o "src/pfs_eth.o" "../src/pfs_eth.c"
+Finished building: ../src/pfs_eth.c
+ 
+Building file: ../src/pfs_queues.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/pfs_queues.o" -I../../eth_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/pfs_queues.d" -MT"src/pfs_queues.o" -o "src/pfs_queues.o" "../src/pfs_queues.c"
+Finished building: ../src/pfs_queues.c
+ 
+Building file: ../src/pfs_translate.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/pfs_translate.o" -I../../eth_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/pfs_translate.d" -MT"src/pfs_translate.o" -o "src/pfs_translate.o" "../src/pfs_translate.c"
+Finished building: ../src/pfs_translate.c
+ 
+Building file: ../src/platform.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -I../../eth_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+Finished building: ../src/platform.c
+ 
+Building file: ../src/platform_mb.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform_mb.o" -I../../eth_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/platform_mb.d" -MT"src/platform_mb.o" -o "src/platform_mb.o" "../src/platform_mb.c"
+Finished building: ../src/platform_mb.c
+ 
+Building file: ../src/project.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/project.o" -I../../eth_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/project.d" -MT"src/project.o" -o "src/project.o" "../src/project.c"
+Finished building: ../src/project.c
+ 
+Building file: ../src/queue.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/queue.o" -I../../eth_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/queue.d" -MT"src/queue.o" -o "src/queue.o" "../src/queue.c"
+Finished building: ../src/queue.c
+ 
+Building target: pfs_ctrlr.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../eth_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Wl,--no-relax -Wl,--gc-sections -o "pfs_ctrlr.elf"  ./src/pfs.o ./src/pfs_eth.o ./src/pfs_queues.o ./src/pfs_translate.o ./src/platform.o ./src/platform_mb.o ./src/project.o ./src/queue.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+Finished building target: pfs_ctrlr.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size pfs_ctrlr.elf  |tee "pfs_ctrlr.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 106000	 102480	3814592	4023072	 3d6320	pfs_ctrlr.elf
+Finished building: pfs_ctrlr.elf.size
+ 
+08:45:27 **** Auto Build of configuration Debug for project pfs_ctrlr ****
+make all 
+Building file: ../src/project.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/project.o" -I../../eth_bsp/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/project.d" -MT"src/project.o" -o "src/project.o" "../src/project.c"
+Finished building: ../src/project.c
+ 
+Building target: pfs_ctrlr.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../eth_bsp/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v10.0 -mno-xl-soft-mul -mxl-multiply-high -Wl,--no-relax -Wl,--gc-sections -o "pfs_ctrlr.elf"  ./src/pfs.o ./src/pfs_eth.o ./src/pfs_queues.o ./src/pfs_translate.o ./src/platform.o ./src/platform_mb.o ./src/project.o ./src/queue.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+Finished building target: pfs_ctrlr.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size pfs_ctrlr.elf  |tee "pfs_ctrlr.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 106044	 102480	3814596	4023120	 3d6350	pfs_ctrlr.elf
+Finished building: pfs_ctrlr.elf.size
+ 
