@@ -58,6 +58,7 @@ static int parse_setf_pld(QUEUE(uint8_t) *q, setf_cmd *cmd, uint16_t *chksum);
 static void diag(QUEUE(uint8_t) *q);
 static void hk(QUEUE(uint8_t) *q);
 static void power(QUEUE(uint8_t) *q);
+static void admin(QUEUE(uint8_t) *q);
 
 
 // The most recent open TCP connection
@@ -136,6 +137,10 @@ void parse_tcp(QUEUE(uint8_t) *q) {
           case CMD_DIAG:
             DBG_PRINTF(2, "Found DIAG opcode");
             diag(q);
+            break;
+          case CMD_ADMIN:
+            DBG_PRINTF(2, "Found ADMIN opcode");
+            admin(q);
             break;
           default:
             DBG_PRINTF(2, "Found invalid opcode");
@@ -700,5 +705,46 @@ static void power(QUEUE(uint8_t) *q) {
     }
     
 }
+
+static void admin(QUEUE(uint8_t) *q) {
+    static admin_cmd cmd = { .hdr = { .opcode = CMD_ADMIN}};
+    uint16_t local_chksum;
+    uint8_t buf[5];
+    uint8_t response[12];
+    uint32_t t_now;
     
+    code = PFS_NO_ERROR;
+    
+    if(parse_hdr(q, &cmd.hdr, &local_chksum) != 0) {
+      send_tlm(&cmd.hdr, PFS_EMPTY, 0);
+      return;
+    }
+
+    code = (local_chksum != 0) ? PFS_CKSUM_INVAL:code;
+    
+    local_chksum = CMD_ADMIN;
+    local_chksum += buf[0];
+    local_chksum += buf[1];
+    local_chksum += buf[2];
+    local_chksum += (buf[3] << 8) | buf[4];
+	
+    get_pfs_time(&t_now);
+
+    response[0] = CMD_ADMIN; // opcode
+    response[1] = buf[0]; // count
+    response[2] = MAJOR_VERSION;
+    response[3] = MINOR_VERSION;
+    response[4] = (uint8_t)((t_now & 0xff000000) >> 24);
+    response[5] = (uint8_t)((t_now & 0x00ff0000) >> 16);
+    response[6] = (uint8_t)((t_now & 0x0000ff00) >> 8);
+    response[7] = (uint8_t) (t_now & 0x000000ff);
+    response[8] = 0;
+    response[9] = PFS_NO_ERROR;
+    response[10] = 0;
+    response[11] = 0;
+    
+    if (0 != tcp_write(tcp_connection, response, sizeof(response), 1)) {
+      DBG_PRINTF(0, "Some problem writing TCP!");
+    }
+}
 

@@ -110,6 +110,7 @@ void init() {
 	// MAC ADDR
 	unsigned char mac_ethernet_address[] = { 0x00, 0x0a, 0x35, 0x00, 0x01, 0x02 };
 	init_platform();
+	DBG_PRINTF(0, "%s %s.%s Early\n", CODE_DATE, MAJOR_VERSION, MINOR_VERSION);
 
 	// initliaze IP addresses
 	IP4_ADDR(&ipaddr,  128, 149, 77, 24);
@@ -152,7 +153,7 @@ void init() {
     }
 
 	//ushell_printf("Getting board counts on all sectors.\n\r");
-    DBG_PRINTF(0, "9-13-2017 Update.\n\r");
+    DBG_PRINTF(0, "%s %s.%s\n", CODE_DATE, MAJOR_VERSION, MINOR_VERSION);
 
     t_op_end = OP_DISABLED_TIME;
 }
