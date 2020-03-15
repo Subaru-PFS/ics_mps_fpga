@@ -22,6 +22,9 @@
  * Includes
  ******************************************************************************/
 
+#include "xparameters.h"
+#include "netif/xadapter.h"
+
 #include "pfs_eth.h"
 #include "pfs_high_api.h"
 #include "pfs_low_api.h"
@@ -35,6 +38,7 @@
 #include <stdint.h>
 #include <xil_assert.h>
 
+extern struct netif server_netif;
 
 static err_t pfs_accept_callback(void *arg, struct tcp_pcb *newpcb, err_t err);
 static err_t pfs_recv_callback(void *arg, struct tcp_pcb *tpcb,
@@ -137,6 +141,43 @@ void parse_tcp(QUEUE(uint8_t) *q) {
             DBG_PRINTF(2, "Found invalid opcode");
         }
     }
+}
+
+static int require_tcp_bytes(QUEUE(uint8_t) *q, unsigned int need_bytes) {
+  // Read from the Ethernet packet queue until we have the required amount of data.
+  //
+  // - The Ethernet packet queue is _below_ the lwip layer, and is
+  //   populated by the Xilinx interrupt handler.
+  //
+  // - In order for us to get the data, as processed by the lwip IP
+  //   and TCP layers, we need to actively request that lwip check the
+  //   ethernet queue for new packets, by calling
+  //   `xemacif_input()`. This is ordinarily done by the main
+  //   loop. Peek/push-back would be messy because of the command
+  //   header parsing, so I'm electing to call for new data when when
+  //   needed during parsing.
+  //
+  // - In order to handle real truncated input, we only try "a few
+  //   times". I have NO idea how to chose that, but I want to avoid
+  //   using _time_ whose properties I do not understand in this
+  //   world. Thests show that we usually get data after 1-10 calls,
+  //   so I'm setting the limit to 100.
+
+  unsigned int have_bytes;
+  unsigned int try_cnt = 100;
+
+  do {
+    have_bytes = q->navail(q);
+    if (have_bytes >= need_bytes)
+      return 0;
+
+    DBG_PRINTF(2, "getting more TCP data. have=%d, need=%d",
+               have_bytes, need_bytes);
+    xemacif_input(&server_netif);
+  } while (try_cnt-- > 0);
+
+  DBG_PRINTF(0, "timed out before getting enough TCP data");
+  return -1;
 }
 
 /******************************************************************************/
@@ -315,7 +356,7 @@ static int parse_cal_pld(QUEUE(uint8_t) *q, cal_cmd *cmd, uint16_t *chksum) {
     
     // parse payload from tcp one cmd at a time
     for (i = 0; i < cmd->hdr.ncmds; i++) {
-        
+        require_tcp_bytes(q, sizeof(tcp_pld));
         if (q->deq_n(q, tcp_pld, sizeof(tcp_pld)) != sizeof(tcp_pld)) {
             DBG_PRINTF(0, "Failed to dequeue Cal Payload %d!", i);
             return -1;
@@ -418,7 +459,7 @@ static int parse_run_pld(QUEUE(uint8_t) *q, run_cmd *cmd, uint16_t *chksum) {
     
     // parse payload from tcp one cmd at a time
     for (i = 0; i < cmd->hdr.ncmds; i++) {
-        
+        require_tcp_bytes(q, sizeof(tcp_pld));
         if (q->deq_n(q, tcp_pld, sizeof(tcp_pld)) != sizeof(tcp_pld)) {
             DBG_PRINTF(0, "Failed to dequeue Run Payload %d!", i);
             return -1;
@@ -497,7 +538,7 @@ static int parse_setf_pld(QUEUE(uint8_t) *q, setf_cmd *cmd, uint16_t *chksum) {
     
     // parse payload from tcp one cmd at a time
     for (i = 0; i < cmd->hdr.ncmds; i++) {
-        
+        require_tcp_bytes(q, sizeof(tcp_pld));
         if (q->deq_n(q, tcp_pld, sizeof(tcp_pld)) != sizeof(tcp_pld)) {
             DBG_PRINTF(0, "Failed to dequeue Setf Payload %d!", i);
             return -1;
