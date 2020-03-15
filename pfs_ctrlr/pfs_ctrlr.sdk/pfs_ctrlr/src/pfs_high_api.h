@@ -52,7 +52,8 @@ typedef enum {
     PFS_FRQ_INVAL = 6,
     PFS_RUN_TIME_INVAL = 7,
     PFS_INTERLEAVE_TIME_INVAL = 8,
-    PFS_TOO_MANY_CMDS = 9
+    PFS_TOO_MANY_CMDS = 9,
+    PFS_EMPTY = 10
 } pfs_response_code;
 
 /// Standard command header

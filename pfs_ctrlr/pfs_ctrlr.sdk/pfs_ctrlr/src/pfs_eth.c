@@ -115,7 +115,7 @@ void parse_tcp(QUEUE(uint8_t) *q) {
         switch(seek_byte) {
           case CMD_RUN:
             DBG_PRINTF(2, "Found RUN opcode");
-			run(q);
+	    run(q);
             break;
           case CMD_CAL:
             DBG_PRINTF(2, "Found CAL opcode");
@@ -323,29 +323,33 @@ static int parse_hdr(QUEUE(uint8_t) *q, pfs_header *cmd_hdr, uint16_t *chksum) {
 static void cal(QUEUE(uint8_t) *q) {
     static cal_cmd cmd = { .hdr = { .opcode = CMD_CAL}};
     uint16_t local_chksum;
-    
+
+    // We use the global "code" to decide whether to continue.
+    // If that become bad before running the command, only return
+    // _one_ TLM response, with the error code.
+
     code = PFS_NO_ERROR;
-    
-    if(parse_hdr(q, &cmd.hdr, &local_chksum) != 0) {return;}
-    
-    if(parse_cal_pld(q, &cmd, &local_chksum) != 0) {return;}
-    
+
+    parse_hdr(q, &cmd.hdr, &local_chksum);
+    if (code != PFS_NO_ERROR) {
+      send_tlm(&cmd.hdr, code, 0);
+      return;
+    }
+    parse_cal_pld(q, &cmd, &local_chksum);
+    if (code != PFS_NO_ERROR) {
+      send_tlm(&cmd.hdr, code, 0);
+      return;
+    }
+
     code = (local_chksum != 0) ? PFS_CKSUM_INVAL:code;
-    
+
     // First tlm
-	send_tlm(&cmd.hdr, code, 0);
-	
-	if (code == PFS_NO_ERROR) {
-		DBG_PRINTF(2, "Enqueing CAL command");
-		cal_q.enq(&cal_q, &cmd);
-		
-	} else {
-		// Error, send 2nd tlm now and don't enqeue
-		DBG_PRINTF(0, "CAL error code %d. Sending 2nd TLM.", code);
-		send_tlm(&cmd.hdr, code, 1);
-		
-	}
-   
+    send_tlm(&cmd.hdr, code, 0);
+
+    if (code == PFS_NO_ERROR) {
+      DBG_PRINTF(2, "Enqueing CAL command");
+      cal_q.enq(&cal_q, &cmd);
+    }
 }
 
 static int parse_cal_pld(QUEUE(uint8_t) *q, cal_cmd *cmd, uint16_t *chksum) {
@@ -353,23 +357,25 @@ static int parse_cal_pld(QUEUE(uint8_t) *q, cal_cmd *cmd, uint16_t *chksum) {
     uint8_t tcp_pld[10];
     cal_cmd_payload *cal_pld;
     uint16_t buf;
-    
-    // parse payload from tcp one cmd at a time
+
+    //
+    // parse payload from tcp one cobra at a time
     for (i = 0; i < cmd->hdr.ncmds; i++) {
         require_tcp_bytes(q, sizeof(tcp_pld));
         if (q->deq_n(q, tcp_pld, sizeof(tcp_pld)) != sizeof(tcp_pld)) {
             DBG_PRINTF(0, "Failed to dequeue Cal Payload %d!", i);
+	    code = PFS_EMPTY;
             return -1;
         }
-        
+
         // update chksum
         for (j = 0; j < sizeof(tcp_pld); j++) {
             *chksum += tcp_pld[j];
         }
-        
+
         if (i < PFS_MAX_CMDS) {
             cal_pld = &cmd->pld[i];
-            
+
             buf = (tcp_pld[0] << 8) | tcp_pld[1];
             cal_pld->cobra = (buf>>11) - 1;
             cal_pld->board = (0x7F & (buf>>4)) - 1;
@@ -381,7 +387,7 @@ static int parse_cal_pld(QUEUE(uint8_t) *q, cal_cmd *cmd, uint16_t *chksum) {
             cal_pld->mtr1_end = (tcp_pld[4]<<8) | tcp_pld[5];
             cal_pld->mtr2_start = (tcp_pld[6]<<8) | tcp_pld[7];
             cal_pld->mtr2_end = (tcp_pld[8]<<8) | tcp_pld[9];
-            
+
             if (cal_pld->cobra >= MAX_COBRAS_PER_BOARD) {code = PFS_CBR_INVAL;}
             // the board is still 0-83, not converted to sector/board
             if (cal_pld->board >= 84) { code = PFS_BRD_INVAL; }
@@ -389,7 +395,6 @@ static int parse_cal_pld(QUEUE(uint8_t) *q, cal_cmd *cmd, uint16_t *chksum) {
             if (cal_pld->mtr1_end == 0) { code = PFS_FRQ_INVAL; }
             if (cal_pld->mtr2_start == 0) { code = PFS_FRQ_INVAL; }
             if (cal_pld->mtr2_end == 0) { code = PFS_FRQ_INVAL; }
-            
         } else {
             code = PFS_TOO_MANY_CMDS;
         }
@@ -403,52 +408,51 @@ static int parse_cal_pld(QUEUE(uint8_t) *q, cal_cmd *cmd, uint16_t *chksum) {
 static void run(QUEUE(uint8_t) *q) {
     static run_cmd cmd = { .hdr = { .opcode = CMD_RUN}};
     uint16_t local_chksum;
-    
+
     code = PFS_NO_ERROR;
-    
+
     uint8_t tlm_hdr[9];
 
     // Try to get header
-	if ( q->deq_n(q, tlm_hdr, sizeof(tlm_hdr)) != sizeof(tlm_hdr) ) {
-		DBG_PRINTF(0, "Error! Could not deque cmd hdr from TCP Queue.");
-		return;
-	}
+    if ( q->deq_n(q, tlm_hdr, sizeof(tlm_hdr)) != sizeof(tlm_hdr) ) {
+      DBG_PRINTF(0, "Error! Could not deque cmd hdr from TCP Queue.");
+      code = PFS_EMPTY;
+      send_tlm(&cmd.hdr, code, 0);
+      return;
+    }
 
     cmd.hdr.count = tlm_hdr[0];
     cmd.hdr.ncmds = (tlm_hdr[1] << 8) | tlm_hdr[2];
-	cmd.hdr.timeout = (tlm_hdr[3] << 8) | tlm_hdr[4];
-	cmd.step_len = (tlm_hdr[5] << 8) | tlm_hdr[6];
-	cmd.hdr.checksum = (tlm_hdr[7] << 8) | tlm_hdr[8];
+    cmd.hdr.timeout = (tlm_hdr[3] << 8) | tlm_hdr[4];
+    cmd.step_len = (tlm_hdr[5] << 8) | tlm_hdr[6];
+    cmd.hdr.checksum = (tlm_hdr[7] << 8) | tlm_hdr[8];
 
     // setup the checksum
-	local_chksum = cmd.hdr.opcode;
+    local_chksum = cmd.hdr.opcode;
     local_chksum += tlm_hdr[0];
-	local_chksum += tlm_hdr[1];
-	local_chksum += tlm_hdr[2];
-	local_chksum += tlm_hdr[3];
-	local_chksum += tlm_hdr[4];
-	local_chksum += tlm_hdr[5];
-	local_chksum += tlm_hdr[6];
+    local_chksum += tlm_hdr[1];
+    local_chksum += tlm_hdr[2];
+    local_chksum += tlm_hdr[3];
+    local_chksum += tlm_hdr[4];
+    local_chksum += tlm_hdr[5];
+    local_chksum += tlm_hdr[6];
     local_chksum += cmd.hdr.checksum;
 
-    if(parse_run_pld(q, &cmd, &local_chksum) != 0) {return;}
-    
+    parse_run_pld(q, &cmd, &local_chksum);
+    if (code != PFS_NO_ERROR) {
+      send_tlm(&cmd.hdr, code, 0);
+      return;
+    }
+
     code = (local_chksum != 0) ? PFS_CKSUM_INVAL:code;
-    
+
     // First tlm
-	send_tlm(&cmd.hdr, code, 0);
-	
-	if (code == PFS_NO_ERROR) {
-		DBG_PRINTF(2, "Enqueing RUN command");
-		run_q.enq(&run_q, &cmd);
-		
-	} else {
-		// Error, send 2nd tlm now and don't enqeue
-		DBG_PRINTF(0, "RUN error code %d. Sending 2nd TLM.", code);
-		send_tlm(&cmd.hdr, code, 1);
-		
-	}
-   
+    send_tlm(&cmd.hdr, code, 0);
+
+    if (code == PFS_NO_ERROR) {
+      DBG_PRINTF(2, "Enqueing RUN command");
+      run_q.enq(&run_q, &cmd);
+    }
 }
 
 static int parse_run_pld(QUEUE(uint8_t) *q, run_cmd *cmd, uint16_t *chksum) {
@@ -456,23 +460,24 @@ static int parse_run_pld(QUEUE(uint8_t) *q, run_cmd *cmd, uint16_t *chksum) {
     uint8_t tcp_pld[14];
     run_cmd_payload *run_pld;
     uint16_t buf;
-    
-    // parse payload from tcp one cmd at a time
+
+    // parse payload from tcp one cobra at a time
     for (i = 0; i < cmd->hdr.ncmds; i++) {
         require_tcp_bytes(q, sizeof(tcp_pld));
         if (q->deq_n(q, tcp_pld, sizeof(tcp_pld)) != sizeof(tcp_pld)) {
             DBG_PRINTF(0, "Failed to dequeue Run Payload %d!", i);
+	    code = PFS_EMPTY;
             return -1;
         }
-        
+
         // update chksum
         for (j = 0; j < sizeof(tcp_pld); j++) {
             *chksum += tcp_pld[j];
         }
-        
+
         if (i < PFS_MAX_CMDS) {
             run_pld = &cmd->pld[i];
-            
+
             buf = (tcp_pld[0] << 8) | tcp_pld[1];
             run_pld->cobra = (buf>>11) - 1;
             run_pld->board = (0x7F & (buf>>4)) - 1;
@@ -486,12 +491,11 @@ static int parse_run_pld(QUEUE(uint8_t) *q, run_cmd *cmd, uint16_t *chksum) {
             run_pld->mtr2_pulse_len = (tcp_pld[8]<<8) | tcp_pld[9];
             run_pld->mtr2_steps = (tcp_pld[10]<<8) | tcp_pld[11];
             run_pld->mtr2_sleeps = (tcp_pld[12]<<8) | tcp_pld[13];
-            
+
             if (run_pld->cobra >= MAX_COBRAS_PER_BOARD) {code = PFS_CBR_INVAL;}
             // the board is still 0-83, not converted to sector/board
             if (run_pld->board >= 84) {code = PFS_BRD_INVAL;}
 
-            
         } else {
             code = PFS_TOO_MANY_CMDS;
         }
@@ -505,29 +509,30 @@ static int parse_run_pld(QUEUE(uint8_t) *q, run_cmd *cmd, uint16_t *chksum) {
 static void setf(QUEUE(uint8_t) *q) {
     static setf_cmd cmd = { .hdr = { .opcode = CMD_SETF}};
     uint16_t local_chksum;
-    
+
     code = PFS_NO_ERROR;
-    
-    if(parse_hdr(q, &cmd.hdr, &local_chksum) != 0) {return;}
-    
-    if(parse_setf_pld(q, &cmd, &local_chksum) != 0) {return;}
-    
+
+    parse_hdr(q, &cmd.hdr, &local_chksum);
+    if (code != PFS_NO_ERROR) {
+      send_tlm(&cmd.hdr, code, 0);
+      return;
+    }
+
+    parse_setf_pld(q, &cmd, &local_chksum);
+    if (code != PFS_NO_ERROR) {
+      send_tlm(&cmd.hdr, code, 0);
+      return;
+    }
+
     code = (local_chksum != 0) ? PFS_CKSUM_INVAL:code;
-    
+
     // First tlm
-	send_tlm(&cmd.hdr, code, 0);
-	
-	if (code == PFS_NO_ERROR) {
-		DBG_PRINTF(2, "Enqueing SETF command");
-		setf_q.enq(&setf_q, &cmd);
-		
-	} else {
-		// Error, send 2nd tlm now and don't enqeue
-		DBG_PRINTF(0, "SETF error code %d. Sending 2nd TLM.", code);
-		send_tlm(&cmd.hdr, code, 1);
-		
-	}
-   
+    send_tlm(&cmd.hdr, code, 0);
+
+    if (code == PFS_NO_ERROR) {
+      DBG_PRINTF(2, "Enqueing SETF command");
+      setf_q.enq(&setf_q, &cmd);
+    }
 }
 
 static int parse_setf_pld(QUEUE(uint8_t) *q, setf_cmd *cmd, uint16_t *chksum) {
@@ -535,23 +540,24 @@ static int parse_setf_pld(QUEUE(uint8_t) *q, setf_cmd *cmd, uint16_t *chksum) {
     uint8_t tcp_pld[6];
     setf_cmd_payload *setf_pld;
     uint16_t buf;
-    
-    // parse payload from tcp one cmd at a time
+
+    // parse payload from tcp one cobra at a time
     for (i = 0; i < cmd->hdr.ncmds; i++) {
         require_tcp_bytes(q, sizeof(tcp_pld));
         if (q->deq_n(q, tcp_pld, sizeof(tcp_pld)) != sizeof(tcp_pld)) {
             DBG_PRINTF(0, "Failed to dequeue Setf Payload %d!", i);
+	    code = PFS_EMPTY;
             return -1;
         }
-        
+
         // update chksum
         for (j = 0; j < sizeof(tcp_pld); j++) {
             *chksum += tcp_pld[j];
         }
-        
+
         if (i < PFS_MAX_CMDS) {
             setf_pld = &cmd->pld[i];
-            
+
             buf = (tcp_pld[0] << 8) | tcp_pld[1];
             setf_pld->cobra = (buf>>11) - 1;
             setf_pld->board = (0x7F & (buf>>4)) - 1;
@@ -560,7 +566,7 @@ static int parse_setf_pld(QUEUE(uint8_t) *q, setf_cmd *cmd, uint16_t *chksum) {
             setf_pld->mtr1_en = 0x01 & (buf>>0);
             setf_pld->mtr1_freq = (tcp_pld[2]<<8) | tcp_pld[3];
             setf_pld->mtr2_freq = (tcp_pld[4]<<8) | tcp_pld[5];
-            
+
             if (setf_pld->cobra >= MAX_COBRAS_PER_BOARD) {code = PFS_CBR_INVAL;}
             // the board is still 0-83, not converted to sector/board
             if (setf_pld->board >= 84) {code = PFS_BRD_INVAL;}
@@ -571,7 +577,6 @@ static int parse_setf_pld(QUEUE(uint8_t) *q, setf_cmd *cmd, uint16_t *chksum) {
             code = PFS_TOO_MANY_CMDS;
         }
     }
-
     return 0;
 }
 

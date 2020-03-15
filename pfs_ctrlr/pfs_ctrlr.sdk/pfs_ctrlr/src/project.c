@@ -72,7 +72,7 @@ motor_cmd query_cmd = {
 uint32_t t_now;
 uint32_t t_op_end;
 
-static struct netif server_netif;
+struct netif server_netif;
 static struct ip_addr ipaddr, netmask, gw;
 
 /******************************************************************************/
