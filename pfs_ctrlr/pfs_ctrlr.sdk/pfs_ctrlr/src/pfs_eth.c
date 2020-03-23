@@ -302,6 +302,7 @@ static int parse_hdr(QUEUE(uint8_t) *q, pfs_header *cmd_hdr, uint16_t *chksum) {
     
     // Try to get header
 	if ( q->deq_n(q, tlm_hdr, sizeof(tlm_hdr)) != sizeof(tlm_hdr) ) {
+		code = PFS_EMPTY;
 		DBG_PRINTF(0, "Error! Could not deque cmd hdr from TCP Queue.");
 		return -1;
 	}
@@ -369,7 +370,7 @@ static int parse_cal_pld(QUEUE(uint8_t) *q, cal_cmd *cmd, uint16_t *chksum) {
         require_tcp_bytes(q, sizeof(tcp_pld));
         if (q->deq_n(q, tcp_pld, sizeof(tcp_pld)) != sizeof(tcp_pld)) {
             DBG_PRINTF(0, "Failed to dequeue Cal Payload %d!", i);
-	    code = PFS_EMPTY;
+            code = PFS_EMPTY;
             return -1;
         }
 
@@ -413,10 +414,9 @@ static int parse_cal_pld(QUEUE(uint8_t) *q, cal_cmd *cmd, uint16_t *chksum) {
 static void run(QUEUE(uint8_t) *q) {
     static run_cmd cmd = { .hdr = { .opcode = CMD_RUN}};
     uint16_t local_chksum;
+    uint8_t tlm_hdr[9];
 
     code = PFS_NO_ERROR;
-
-    uint8_t tlm_hdr[9];
 
     // Try to get header
     if ( q->deq_n(q, tlm_hdr, sizeof(tlm_hdr)) != sizeof(tlm_hdr) ) {
@@ -471,7 +471,7 @@ static int parse_run_pld(QUEUE(uint8_t) *q, run_cmd *cmd, uint16_t *chksum) {
         require_tcp_bytes(q, sizeof(tcp_pld));
         if (q->deq_n(q, tcp_pld, sizeof(tcp_pld)) != sizeof(tcp_pld)) {
             DBG_PRINTF(0, "Failed to dequeue Run Payload %d!", i);
-	    code = PFS_EMPTY;
+            code = PFS_EMPTY;
             return -1;
         }
 
@@ -551,7 +551,7 @@ static int parse_setf_pld(QUEUE(uint8_t) *q, setf_cmd *cmd, uint16_t *chksum) {
         require_tcp_bytes(q, sizeof(tcp_pld));
         if (q->deq_n(q, tcp_pld, sizeof(tcp_pld)) != sizeof(tcp_pld)) {
             DBG_PRINTF(0, "Failed to dequeue Setf Payload %d!", i);
-	    code = PFS_EMPTY;
+            code = PFS_EMPTY;
             return -1;
         }
 
@@ -593,10 +593,12 @@ static void diag(QUEUE(uint8_t) *q) {
     uint16_t local_chksum;
     int sect;
 	
-	if ( q->deq_n(q, buf, sizeof(buf)) != sizeof(buf) ) {
-		DBG_PRINTF(0, "Failed to dequeue Diag header!");
-		return;
-	}
+    if ( q->deq_n(q, buf, sizeof(buf)) != sizeof(buf) ) {
+      static hk_cmd cmd = { .hdr = { .opcode = CMD_DIAG}};
+      DBG_PRINTF(0, "Failed to dequeue Diag header!");
+      send_tlm(&cmd.hdr, PFS_EMPTY, 0);
+      return;
+    }
     
     local_chksum = CMD_DIAG;
     local_chksum += buf[0];
@@ -604,29 +606,29 @@ static void diag(QUEUE(uint8_t) *q) {
     local_chksum += buf[2];
     local_chksum += (buf[3] << 8) | buf[4];
 	
-	response[0] = CMD_DIAG; // opcode
-	response[1] = buf[0]; // count
-	response[2] = (uint8_t) sectors[0].board_count;
-	response[3] = (uint8_t) sectors[1].board_count;
-	response[4] = (uint8_t) sectors[2].board_count;
-	response[5] = (uint8_t) sectors[3].board_count;
-	response[6] = (uint8_t) sectors[4].board_count;
-	response[7] = (uint8_t) sectors[5].board_count;
-	response[8] = 0;
-	response[9] = (local_chksum == 0) ? PFS_NO_ERROR : PFS_CKSUM_INVAL;
-	response[10] = 0;
-	response[11] = 0;
+    response[0] = CMD_DIAG; // opcode
+    response[1] = buf[0]; // count
+    response[2] = (uint8_t) sectors[0].board_count;
+    response[3] = (uint8_t) sectors[1].board_count;
+    response[4] = (uint8_t) sectors[2].board_count;
+    response[5] = (uint8_t) sectors[3].board_count;
+    response[6] = (uint8_t) sectors[4].board_count;
+    response[7] = (uint8_t) sectors[5].board_count;
+    response[8] = 0;
+    response[9] = (local_chksum == 0) ? PFS_NO_ERROR : PFS_CKSUM_INVAL;
+    response[10] = 0;
+    response[11] = 0;
     
     for (sect=0; sect < NUM_SECTORS; sect++) {
-        DBG_PRINTF(2, "Sect%d num Tx,Rx %d,%d",
-        		sect, sector_tx_count(sect), sector_rx_count(sect));
+      DBG_PRINTF(2, "Sect%d num Tx,Rx %d,%d",
+		 sect, sector_tx_count(sect), sector_rx_count(sect));
     }
 	
-	DBG_PRINTF(2, "Diagnostic command");
-	
-	if (0 != tcp_write(tcp_connection, response, sizeof(response), 1)) {
-		DBG_PRINTF(0, "Some problem writing TCP!")
-	}
+    DBG_PRINTF(2, "Diagnostic command");
+
+    if (0 != tcp_write(tcp_connection, response, sizeof(response), 1)) {
+      DBG_PRINTF(0, "Some problem writing TCP!");
+    }
 }
 
 
@@ -636,7 +638,11 @@ static void hk(QUEUE(uint8_t) *q) {
     
     code = PFS_NO_ERROR;
     
-    if(parse_hdr(q, &cmd.hdr, &local_chksum) != 0) {return;}
+    parse_hdr(q, &cmd.hdr, &local_chksum);
+    if (code != PFS_NO_ERROR) {
+    	send_tlm(&cmd.hdr, code, 0);
+    	return;
+    }
 
     code = (local_chksum != 0) ? PFS_CKSUM_INVAL:code;
     
@@ -644,19 +650,11 @@ static void hk(QUEUE(uint8_t) *q) {
     cmd.hdr.ncmds -= 1;
     
     // First tlm
-	send_tlm(&cmd.hdr, code, 0);
-	
-	if (code == PFS_NO_ERROR) {
-		DBG_PRINTF(2, "Enqueing Hk command");
-		hk_q.enq(&hk_q, &cmd);
-		
-	} else {
-		// Error, send 2nd tlm now and don't enqeue
-		DBG_PRINTF(0, "Hk error code %d. Sending 2nd TLM.", code);
-		send_tlm(&cmd.hdr, code, 1);
-		
-	}
-   
+    send_tlm(&cmd.hdr, code, 0);
+    if (code == PFS_NO_ERROR) {
+      DBG_PRINTF(2, "Enqueing Hk command");
+      hk_q.enq(&hk_q, &cmd);
+    }
 }
 
 static void power(QUEUE(uint8_t) *q) {
@@ -667,13 +665,14 @@ static void power(QUEUE(uint8_t) *q) {
     int sect;
     
     if ( q->deq_n(q, buf, sizeof(buf)) != sizeof(buf) ) {
-		DBG_PRINTF(0, "Failed to dequeue Power header!");
-		return;
-	}
+      DBG_PRINTF(0, "Failed to dequeue Power header!");
+      send_tlm(&hdr, PFS_EMPTY, 0);
+      return;
+    }
     
     hdr.count = buf[0];
     sector_powers = buf[1];
-	sector_resets = buf[2];
+    sector_resets = buf[2];
     hdr.checksum = (uint16_t) ((buf[5] << 8) | buf[6]);
     
     local_chksum = CMD_POWER;
