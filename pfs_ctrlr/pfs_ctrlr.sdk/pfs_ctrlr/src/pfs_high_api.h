@@ -44,7 +44,7 @@ enum {
     CMD_HK    = 0x04,
     CMD_POWER = 0x05,
     CMD_DIAG  = 0x06,
-    CMD_ADMIN= 0x07
+    CMD_ADMIN = 0x07
 };
 
 typedef enum {
@@ -152,6 +152,7 @@ typedef struct {
 typedef struct {
     pfs_header hdr;
     uint8_t debug_level;
+    uint8_t pad;
 } admin_cmd;
 
 

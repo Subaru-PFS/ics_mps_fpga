@@ -702,31 +702,37 @@ static void power(QUEUE(uint8_t) *q) {
     for (sect=0; sect < NUM_SECTORS; sect++) {
         ping(&sectors[sect]);
     }
-    
 }
 
 static void admin(QUEUE(uint8_t) *q) {
     static admin_cmd cmd = { .hdr = { .opcode = CMD_ADMIN}};
     uint16_t local_chksum;
-    uint8_t buf[5];
+    uint8_t buf[7];
     uint8_t response[12];
     uint32_t t_now;
     
     code = PFS_NO_ERROR;
     
-    if(parse_hdr(q, &cmd.hdr, &local_chksum) != 0) {
+    if (q->deq_n(q, buf, sizeof(buf)) != sizeof(buf)) {
+      DBG_PRINTF(0, "Failed to dequeue Admin header!");
       send_tlm(&cmd.hdr, PFS_EMPTY, 0);
       return;
     }
 
-    code = (local_chksum != 0) ? PFS_CKSUM_INVAL:code;
-    
+    cmd.hdr.count = buf[0];
+    debug_level = (unsigned int)buf[1];
+    cmd.hdr.checksum = (uint16_t) ((buf[5] << 8) | buf[6]);
+
     local_chksum = CMD_ADMIN;
     local_chksum += buf[0];
     local_chksum += buf[1];
     local_chksum += buf[2];
-    local_chksum += (buf[3] << 8) | buf[4];
-	
+    local_chksum += buf[3];
+    local_chksum += buf[4];
+    local_chksum += cmd.hdr.checksum;
+
+    code = (local_chksum != 0) ? PFS_CKSUM_INVAL:code;
+
     get_pfs_time(&t_now);
 
     response[0] = CMD_ADMIN; // opcode
