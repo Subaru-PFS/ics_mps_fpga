@@ -143,7 +143,7 @@ void parse_tcp(QUEUE(uint8_t) *q) {
             admin(q);
             break;
           default:
-            DBG_PRINTF(2, "Found invalid opcode");
+            DBG_PRINTF(0, "Found invalid opcode");
         }
     }
 }
@@ -256,7 +256,7 @@ void send_tlm(const pfs_header *hdr, pfs_response_code resp_code, uint16_t detai
 static err_t pfs_accept_callback(void *arg, struct tcp_pcb *newpcb, err_t err) {
 	static int connection = 1;
 
-    DBG_PRINTF(1, "Accepting connection");
+    DBG_PRINTF(0, "Accepting connection");
     tcp_connection = newpcb;
 
 	/* set the receive callback for this connection */
@@ -744,7 +744,7 @@ static void admin(QUEUE(uint8_t) *q) {
     response[11] = 0;
     
     if (0 != tcp_write(tcp_connection, response, sizeof(response), 1)) {
-      DBG_PRINTF(0, "Some problem writing TCP!");
+    	DBG_PRINTF(0, "Some problem writing TCP!");
     }
 }
 
