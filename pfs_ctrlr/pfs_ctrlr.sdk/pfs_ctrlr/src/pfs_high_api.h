@@ -5,6 +5,10 @@
 
 #include "pfs_low_api.h"
 
+#define CODE_DATE "2020-03-15"
+#define MAJOR_VERSION 2
+#define MINOR_VERSION 0
+
 #define NUM_PFS_MODULES 42
 #define COBRAS_PER_MODULE 57
  
@@ -39,7 +43,8 @@ enum {
     CMD_SETF  = 0x03,
     CMD_HK    = 0x04,
     CMD_POWER = 0x05,
-    CMD_DIAG  = 0x06
+    CMD_DIAG  = 0x06,
+    CMD_ADMIN = 0x07
 };
 
 typedef enum {
@@ -52,7 +57,8 @@ typedef enum {
     PFS_FRQ_INVAL = 6,
     PFS_RUN_TIME_INVAL = 7,
     PFS_INTERLEAVE_TIME_INVAL = 8,
-    PFS_TOO_MANY_CMDS = 9
+    PFS_TOO_MANY_CMDS = 9,
+    PFS_EMPTY = 10
 } pfs_response_code;
 
 /// Standard command header
@@ -141,6 +147,13 @@ typedef struct {
 typedef struct {
     pfs_header hdr;
 } hk_cmd;
+
+/// Admin command: get status, adjust logging.
+typedef struct {
+    pfs_header hdr;
+    uint8_t debug_level;
+    uint8_t pad;
+} admin_cmd;
 
 
 #endif

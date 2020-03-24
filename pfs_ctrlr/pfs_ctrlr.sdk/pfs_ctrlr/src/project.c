@@ -72,7 +72,7 @@ motor_cmd query_cmd = {
 uint32_t t_now;
 uint32_t t_op_end;
 
-static struct netif server_netif;
+struct netif server_netif;
 static struct ip_addr ipaddr, netmask, gw;
 
 /******************************************************************************/
@@ -110,6 +110,7 @@ void init() {
 	// MAC ADDR
 	unsigned char mac_ethernet_address[] = { 0x00, 0x0a, 0x35, 0x00, 0x01, 0x02 };
 	init_platform();
+	DBG_PRINTF(0, "%s %d.%d Early\n", CODE_DATE, MAJOR_VERSION, MINOR_VERSION);
 
 	// initliaze IP addresses
 	IP4_ADDR(&ipaddr,  128, 149, 77, 24);
@@ -152,7 +153,7 @@ void init() {
     }
 
 	//ushell_printf("Getting board counts on all sectors.\n\r");
-    DBG_PRINTF(0, "9-13-2017 Update.\n\r");
+    DBG_PRINTF(0, "%s %d.%d\n", CODE_DATE, MAJOR_VERSION, MINOR_VERSION);
 
     t_op_end = OP_DISABLED_TIME;
 }
@@ -400,7 +401,7 @@ static void check_ping(sector_t *sector) {
     }
     // otherwise finalize the board count by returning to READY state
     sector->state = READY;
-    DBG_PRINTF(2, "Sect%d has %d brds", sector->num, sector->board_count);
+    DBG_PRINTF(3, "Sect%d has %d brds", sector->num, sector->board_count);
 }
 
 

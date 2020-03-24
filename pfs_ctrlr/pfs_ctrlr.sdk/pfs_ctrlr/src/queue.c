@@ -91,6 +91,20 @@ int q_enq_n_(queue_ *queue, const unsigned char *obj, unsigned int n, unsigned i
     return to_copy + q_enq_n_(queue, obj + size*to_copy, n - to_copy, size);
 }
 
+int q_navail_(queue_ *queue, unsigned int size) {
+  // Return the count of available data units.
+
+  // capture the write pointer now, to avoid it changing under us.
+  unsigned char *wr = queue->wr;
+
+  if (queue->rd <= wr) {
+    return (wr - queue->rd)/size;
+  } else {
+    return ((queue->end - queue->rd) +
+	    (wr - queue->data))/size;
+  }
+}
+
 int q_deq_n_(queue_ *queue, unsigned char *obj, unsigned int n, unsigned int size) {
     unsigned int to_copy;
 

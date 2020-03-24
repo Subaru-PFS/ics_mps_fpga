@@ -38,6 +38,7 @@
 #define ENQ_N_(type) type ## _q_enq_n
 #define DEQ_N_(type) type ## _q_deq_n
 #define UTIL_(type)  type ## _q_util
+#define NAVAIL_(type) type ## _q_navail
 
 
 #define DECL_TYPED_QUEUE(type, tname)                                           \
@@ -56,6 +57,7 @@ typedef struct tname {                                                          
     int  (*enq_n)(struct tname *queue, const type *obj, unsigned int n);  \
     int  (*deq_n)(struct tname *queue, type *obj, unsigned int n);        \
     int  (*util)(struct tname *queue);                                    \
+    int  (*navail)(struct tname *queue);                                  \
 } tname
 
 DECL_TYPED_QUEUE(unsigned char, queue_);
@@ -72,7 +74,8 @@ DECL_TYPED_QUEUE(unsigned char, queue_);
         .deq = DEQ_(type),              \
         .enq_n = ENQ_N_(type),          \
         .deq_n = DEQ_N_(type),          \
-        .util = UTIL_(type)             \
+        .util = UTIL_(type),		\
+	.navail = NAVAIL_(type)         \
     }
 
 #define DECL_QUEUE(type)                                                    \
@@ -84,7 +87,8 @@ DECL_TYPED_QUEUE(unsigned char, queue_);
     int  DEQ_(type) (QUEUE(type) *queue, type *obj);                         \
     int  ENQ_N_(type) (QUEUE(type) *queue, const type *obj, unsigned int n); \
     int  DEQ_N_(type) (QUEUE(type) *queue, type *obj, unsigned int n);       \
-    int  UTIL_(type) (QUEUE(type) *queue)
+    int  UTIL_(type) (QUEUE(type) *queue);		                     \
+    int  NAVAIL_(type) (QUEUE(type) *queue)
 
 #define DEFN_QUEUE(type)                                                                \
     int  ALLOC_(type) (QUEUE(type) *queue, unsigned int depth) {                         \
@@ -109,6 +113,9 @@ DECL_TYPED_QUEUE(unsigned char, queue_);
     }                                                                                   \
     int  UTIL_(type) (QUEUE(type) *queue) {                                              \
         return q_util_((queue_ *)queue, sizeof(type));                                  \
+    }                                                                                   \
+    int  NAVAIL_(type) (QUEUE(type) *queue) {	                                        \
+        return q_navail_((queue_ *)queue, sizeof(type));                                \
     }
 
 int  q_alloc_(queue_ *queue, unsigned int depth, unsigned int size);
@@ -118,5 +125,5 @@ int  q_deq_(queue_ *queue, unsigned char *obj, unsigned int size);
 int  q_enq_n_(queue_ *queue, const unsigned char *obj, unsigned int n, unsigned int size);
 int  q_deq_n_(queue_ *queue, unsigned char *obj, unsigned int n, unsigned int size);
 int  q_util_(queue_ *queue, unsigned int size);
-
+int  q_navail_(queue_ *queue, unsigned int size);
 #endif /* QUEUE_H_ */

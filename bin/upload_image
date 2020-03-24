@@ -1,0 +1,10 @@
+# HW_HOST is the IP address of a running hw_server. Perhaps tunneled: it tunnels cleanly on port 3121
+#
+HW_HOST=${HW_HOST:-localhost}
+
+# ICS_MPS_FPGA_DIR is the root directory of the entire ics_mps_fpga github checkout.
+#
+ICS_MPS_FPGA_DIR=${ICS_MPS_FPGA_DIR:-.}
+
+export HW_HOST ICS_MPS_FPGA_DIR
+/opt/Xilinx/SDK/2017.2/bin/xsdk -batch ${ICS_MPS_FPGA_DIR}/scripts/upload_image.tcl
