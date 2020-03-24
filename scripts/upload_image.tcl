@@ -1,4 +1,4 @@
-puts stderr "connecting to hw_server at HW=_HOST=$env(HW_HOST)"
+puts stderr "connecting to hw_server at HW_HOST=$env(HW_HOST)"
 connect -url tcp:$env(HW_HOST):3121
 
 puts "uploading hardware design: $env(ICS_MPS_FPGA_DIR)/pfs_ctrlr/pfs_ctrlr.sdk/block_design_wrapper_hw_platform_0/download.bit"
