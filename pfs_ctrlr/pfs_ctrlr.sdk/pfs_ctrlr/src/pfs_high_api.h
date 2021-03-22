@@ -5,8 +5,8 @@
 
 #include "pfs_low_api.h"
 
-#define CODE_DATE "2020-03-15"
-#define MAJOR_VERSION 2
+#define CODE_DATE "2021-03-22"
+#define MAJOR_VERSION 3
 #define MINOR_VERSION 0
 
 #define NUM_PFS_MODULES 42

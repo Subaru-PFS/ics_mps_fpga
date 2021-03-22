@@ -113,9 +113,9 @@ void init() {
 	DBG_PRINTF(0, "%s %d.%d Early\n", CODE_DATE, MAJOR_VERSION, MINOR_VERSION);
 
 	// initliaze IP addresses
-	IP4_ADDR(&ipaddr,  128, 149, 77, 24);
-	IP4_ADDR(&netmask, 255, 255, 255,  0);
-	IP4_ADDR(&gw,      128, 149, 77,  1);
+	IP4_ADDR(&ipaddr,  133,  40, 164, 101);
+	IP4_ADDR(&netmask, 255, 255, 254,   0);
+	IP4_ADDR(&gw,      133,  40, 164,   1);
 
 	print_ip_settings(&ipaddr, &netmask, &gw);
     
