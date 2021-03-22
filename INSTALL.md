@@ -41,7 +41,7 @@ the same host, or that an ssh tunnel has been set up for port 3121.
 
 Everything is in the https://github.com/Subaru-PFS/ics_mps_fpga.git
 repo. Check that out and cd into it. Master is probably fine, but the
-current tag is 2.0.0.
+current tag is 3.0.0.
 
 The ``pfs_ctrlr`` code, both for the the layout and for the HLS C, is
 all in the ``pfs_ctrlr`` subdirectory, but all that is *required* to
