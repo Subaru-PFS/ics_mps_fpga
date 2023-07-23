@@ -299,29 +299,30 @@ static err_t pfs_recv_callback(void *arg, struct tcp_pcb *tpcb,
 
 static int parse_hdr(QUEUE(uint8_t) *q, pfs_header *cmd_hdr, uint16_t *chksum) {
     uint8_t tlm_hdr[7];
-    
+
     // Try to get header
-	if ( q->deq_n(q, tlm_hdr, sizeof(tlm_hdr)) != sizeof(tlm_hdr) ) {
-		code = PFS_EMPTY;
-		DBG_PRINTF(0, "Error! Could not deque cmd hdr from TCP Queue.");
-		return -1;
-	}
-    
+    require_tcp_bytes(q, sizeof(tlm_hdr));
+    if ( q->deq_n(q, tlm_hdr, sizeof(tlm_hdr)) != sizeof(tlm_hdr) ) {
+      code = PFS_EMPTY;
+      DBG_PRINTF(0, "Error! Could not deque cmd hdr from TCP Queue.");
+      return -1;
+    }
+
     cmd_hdr->count = tlm_hdr[0];
     cmd_hdr->ncmds = (tlm_hdr[1] << 8) | tlm_hdr[2];
-	cmd_hdr->timeout = (tlm_hdr[3] << 8) | tlm_hdr[4];
-	cmd_hdr->checksum = (tlm_hdr[5] << 8) | tlm_hdr[6];
+    cmd_hdr->timeout = (tlm_hdr[3] << 8) | tlm_hdr[4];
+    cmd_hdr->checksum = (tlm_hdr[5] << 8) | tlm_hdr[6];
 
     // setup the checksum
     *chksum = cmd_hdr->opcode;
     *chksum += tlm_hdr[0];
-	*chksum += tlm_hdr[1];
-	*chksum += tlm_hdr[2];
-	*chksum += tlm_hdr[3];
-	*chksum += tlm_hdr[4];
+    *chksum += tlm_hdr[1];
+    *chksum += tlm_hdr[2];
+    *chksum += tlm_hdr[3];
+    *chksum += tlm_hdr[4];
     *chksum += cmd_hdr->checksum;
-    
-    return 0;   
+
+    return 0;
 }
 
 /******************************************************************************/
@@ -419,6 +420,7 @@ static void run(QUEUE(uint8_t) *q) {
     code = PFS_NO_ERROR;
 
     // Try to get header
+    require_tcp_bytes(q, sizeof(tlm_hdr));
     if ( q->deq_n(q, tlm_hdr, sizeof(tlm_hdr)) != sizeof(tlm_hdr) ) {
       DBG_PRINTF(0, "Error! Could not deque cmd hdr from TCP Queue.");
       code = PFS_EMPTY;
@@ -592,20 +594,21 @@ static void diag(QUEUE(uint8_t) *q) {
     uint8_t response[12];
     uint16_t local_chksum;
     int sect;
-	
+
+    require_tcp_bytes(q, sizeof(buf));
     if ( q->deq_n(q, buf, sizeof(buf)) != sizeof(buf) ) {
       static hk_cmd cmd = { .hdr = { .opcode = CMD_DIAG}};
       DBG_PRINTF(0, "Failed to dequeue Diag header!");
       send_tlm(&cmd.hdr, PFS_EMPTY, 0);
       return;
     }
-    
+
     local_chksum = CMD_DIAG;
     local_chksum += buf[0];
     local_chksum += buf[1];
     local_chksum += buf[2];
     local_chksum += (buf[3] << 8) | buf[4];
-	
+
     response[0] = CMD_DIAG; // opcode
     response[1] = buf[0]; // count
     response[2] = (uint8_t) sectors[0].board_count;
@@ -663,13 +666,14 @@ static void power(QUEUE(uint8_t) *q) {
     uint16_t local_chksum;
     uint8_t sector_powers, sector_resets;
     int sect;
-    
+
+    require_tcp_bytes(q, sizeof(buf));
     if ( q->deq_n(q, buf, sizeof(buf)) != sizeof(buf) ) {
       DBG_PRINTF(0, "Failed to dequeue Power header!");
       send_tlm(&hdr, PFS_EMPTY, 0);
       return;
     }
-    
+
     hdr.count = buf[0];
     sector_powers = buf[1];
     sector_resets = buf[2];
@@ -712,7 +716,8 @@ static void admin(QUEUE(uint8_t) *q) {
     uint32_t t_now;
     
     code = PFS_NO_ERROR;
-    
+
+    require_tcp_bytes(q, sizeof(buf));
     if (q->deq_n(q, buf, sizeof(buf)) != sizeof(buf)) {
       DBG_PRINTF(0, "Failed to dequeue Admin header!");
       send_tlm(&cmd.hdr, PFS_EMPTY, 0);

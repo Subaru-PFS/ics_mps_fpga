@@ -5,13 +5,13 @@
 
 #include "pfs_low_api.h"
 
-#define CODE_DATE "2021-03-29"
+#define CODE_DATE "2023-07-23"
 #define MAJOR_VERSION 3
-#define MINOR_VERSION 1
+#define MINOR_VERSION 2
 
 #define NUM_PFS_MODULES 42
 #define COBRAS_PER_MODULE 57
- 
+
 /// Maximum number of cobra commands (from ethernet)
 #define PFS_MAX_CMDS  (NUM_PFS_MODULES * COBRAS_PER_MODULE)
 
