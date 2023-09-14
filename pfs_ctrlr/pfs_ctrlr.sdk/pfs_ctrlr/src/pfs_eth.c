@@ -632,6 +632,7 @@ static void diag(QUEUE(uint8_t) *q) {
     if (0 != tcp_write(tcp_connection, response, sizeof(response), 1)) {
       DBG_PRINTF(0, "Some problem writing TCP!");
     }
+    tcp_output(tcp_connection);
 }
 
 
@@ -756,5 +757,6 @@ static void admin(QUEUE(uint8_t) *q) {
     if (0 != tcp_write(tcp_connection, response, sizeof(response), 1)) {
     	DBG_PRINTF(0, "Some problem writing TCP!");
     }
+    tcp_output(tcp_connection);
 }
 
